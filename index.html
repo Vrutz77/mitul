@@ -6,343 +6,70 @@
   <title>Data → HTML Converter</title>
   <script src="https://cdn.tailwindcss.com"></script>
   <style>
-    /* Simple table stickies and scroll polish */
     .table-wrap { max-height: 60vh; overflow: auto; }
     th.sticky { position: sticky; top: 0; background: white; box-shadow: 0 1px 0 rgba(0,0,0,.08); }
-    /* Hide number spinners */
-    input[type=number]::-webkit-outer-spin-button, input[type=number]::-webkit-inner-spin-button { -webkit-appearance: none; margin: 0; }
-  </style>  
+  </style>
 </head>
 <body class="bg-gray-50 text-gray-900">
-  <div class="max-w-7xl mx-auto p-6">
-    <header class="mb-6 flex items-center justify-between">
-      <h1 class="text-2xl md:text-3xl font-bold tracking-tight">Data → HTML Converter</h1>
-      <a href="#" class="text-sm underline opacity-60 hover:opacity-100" onclick="window.scrollTo({top:0,behavior:'smooth'})">Top</a>
-    </header>
+  <div class="max-w-5xl mx-auto p-6">
+    <h1 class="text-2xl font-bold mb-4">Data → HTML Converter</h1>
 
     <!-- Controls -->
-    <section class="grid md:grid-cols-3 gap-4 mb-6">
-      <div class="p-4 bg-white rounded-2xl shadow">
-        <label class="block text-sm font-medium mb-2">Load data (CSV / TSV / JSON)</label>
-        <input id="fileInput" type="file" accept=".csv,.tsv,.json,.txt,.ndjson" class="block w-full text-sm" />
-        <div class="mt-3 text-xs text-gray-500">or paste below</div>
+    <div class="flex gap-4 mb-4">
+      <textarea id="paste" placeholder="Paste data (1 column, one per line)" 
+        class="w-full h-40 p-3 rounded-xl shadow bg-white"></textarea>
+      <div class="flex flex-col gap-2">
+        <label class="text-sm">Split into columns</label>
+        <input id="splitCols" type="number" min="1" value="2" 
+          class="w-20 px-2 py-1 rounded bg-gray-100" />
+        <button id="btnRender" class="px-3 py-2 rounded-lg bg-black text-white">Render</button>
       </div>
-
-      <div class="p-4 bg-white rounded-2xl shadow">
-        <label class="block text-sm font-medium mb-2">Options</label>
-        <div class="flex flex-wrap gap-3 items-center">
-          <select id="layout" class="px-3 py-2 rounded-xl bg-gray-100">
-            <option value="table">Table</option>
-            <option value="cards">Cards</option>
-          </select>
-          <label class="flex items-center gap-2 text-sm">
-            <span>Rows / page</span>
-            <input id="pageSize" type="number" min="1" value="50" class="w-20 px-2 py-1 rounded-lg bg-gray-100" />
-          </label>
-          <label class="flex items-center gap-2 text-sm">
-            <input id="headerRow" type="checkbox" checked /> <span>First row has headers (CSV/TSV)</span>
-          </label>
-        </div>
-      </div>
-
-      <div class="p-4 bg-white rounded-2xl shadow flex flex-col gap-3">
-        <label class="block text-sm font-medium">Quick actions</label>
-        <div class="flex flex-wrap gap-2">
-          <button id="btnRender" class="px-3 py-2 rounded-2xl bg-black text-white">Render</button>
-          <button id="btnCopyHTML" class="px-3 py-2 rounded-2xl bg-gray-900 text-white">Copy HTML</button>
-          <button id="btnDownloadHTML" class="px-3 py-2 rounded-2xl bg-gray-200">Download .html</button>
-          <button id="btnClear" class="px-3 py-2 rounded-2xl bg-gray-200">Clear</button>
-        </div>
-        <input id="search" placeholder="Search…" class="px-3 py-2 rounded-xl bg-gray-100" />
-      </div>
-    </section>
-
-    <section class="mb-6">
-      <textarea id="paste" placeholder="Paste CSV / TSV / JSON / NDJSON here…" class="w-full h-40 p-3 rounded-2xl shadow bg-white"></textarea>
-      <div class="text-xs text-gray-500 mt-2">Tip: For JSON array of objects, keys become columns automatically. NDJSON (one JSON per line) also works.</div>
-    </section>
+    </div>
 
     <!-- Output -->
-    <section class="space-y-3">
-      <div id="meta" class="text-sm text-gray-600"></div>
-      <div id="output" class="bg-white rounded-2xl shadow p-0"></div>
-      <div id="pager" class="flex items-center gap-2 justify-end text-sm"></div>
-    </section>
+    <div id="output" class="bg-white rounded-xl shadow p-3"></div>
   </div>
 
   <script>
-    // --- Utilities ---
     const byId = id => document.getElementById(id);
-    const state = { data: [], headers: [], page: 1, filteredIdx: [] };
 
-    function detectFormat(text) {
-      const t = text.trim();
-      if (!t) return null;
-      if (t[0] === '[' || t[0] === '{') return 'json';
-      if (t.includes('\t')) return 'tsv';
-      return 'csv';
-    }
-
-    // Minimal CSV/TSV parser with quoted fields support
-    function parseDelimited(text, delimiter=',') {
-      const rows = [];
-      let row = [], field = '', i = 0, inQuotes = false;
-      while (i < text.length) {
-        const c = text[i];
-        if (c === '"') {
-          if (inQuotes && text[i+1] === '"') { field += '"'; i++; }
-          else { inQuotes = !inQuotes; }
-        } else if (!inQuotes && (c === '\n' || c === '\r')) {
-          if (field !== '' || row.length) { row.push(field); rows.push(row); row = []; field=''; }
-          // consume \r\n as one
-          if (c === '\r' && text[i+1] === '\n') i++;
-        } else if (!inQuotes && c === delimiter) {
-          row.push(field); field = '';
-        } else {
-          field += c;
-        }
-        i++;
-      }
-      if (field !== '' || row.length) { row.push(field); rows.push(row); }
-      return rows;
-    }
-
-    function parseJSONLike(text) {
-      const t = text.trim();
-      if (t.startsWith('[')) return JSON.parse(t);
-      // NDJSON
-      return t.split(/\r?\n/).filter(Boolean).map(line => JSON.parse(line));
-    }
-
-    function normalizeToObjects(rows, useHeader=true) {
-      if (!rows.length) return { headers: [], data: [] };
-      let headers = [];
-      if (useHeader) {
-        headers = rows[0].map((h, i) => (h?.toString()?.trim() || `col_${i+1}`));
-        rows = rows.slice(1);
-      } else {
-        const maxLen = Math.max(...rows.map(r => r.length));
-        headers = Array.from({length: maxLen}, (_, i) => `col_${i+1}`);
-      }
-      const data = rows.map(r => Object.fromEntries(headers.map((h, i) => [h, r[i] ?? ''])));
-      return { headers, data };
-    }
-
-    function fromJSONRecords(records) {
-      // Union of keys for headers
-      const headerSet = new Set();
-      records.forEach(obj => Object.keys(obj || {}).forEach(k => headerSet.add(k)));
-      const headers = Array.from(headerSet);
-      const data = records.map(obj => {
-        const row = {};
-        headers.forEach(h => row[h] = obj?.[h] ?? '');
-        return row;
-      });
-      return { headers, data };
-    }
-
-    function readTextFile(file) {
-      return new Promise((resolve, reject) => {
-        const reader = new FileReader();
-        reader.onload = () => resolve(reader.result);
-        reader.onerror = reject;
-        reader.readAsText(file);
-      });
-    }
-
-    // --- Rendering ---
     function render() {
-      const layout = byId('layout').value;
-      const pageSize = Math.max(1, parseInt(byId('pageSize').value)||50);
-      const search = byId('search').value.trim().toLowerCase();
-
-      // filter indices
-      const idx = [];
-      for (let i=0;i<state.data.length;i++) {
-        if (!search) { idx.push(i); continue; }
-        const row = state.data[i];
-        const hit = state.headers.some(h => String(row[h]).toLowerCase().includes(search));
-        if (hit) idx.push(i);
+      const rawText = byId("paste").value.trim();
+      if (!rawText) {
+        alert("Please paste some data first!");
+        return;
       }
-      state.filteredIdx = idx;
 
-      const total = idx.length;
-      const pages = Math.max(1, Math.ceil(total / pageSize));
-      if (state.page > pages) state.page = 1;
-      const start = (state.page - 1) * pageSize;
-      const pageIdx = idx.slice(start, start + pageSize);
+      const values = rawText.split(/\r?\n/).map(v => v.trim()).filter(v => v);
+      const splitCols = parseInt(byId("splitCols").value, 10) || 1;
 
-      byId('meta').textContent = `${total} rows | ${state.headers.length} columns | Page ${state.page} / ${pages}`;
-
-      if (layout === 'table') renderTable(pageIdx);
-      else renderCards(pageIdx);
-
-      renderPager(pages);
-    }
-
-    function renderTable(pageIdx) {
-      const wrap = document.createElement('div');
-      wrap.className = 'table-wrap';
-      const table = document.createElement('table');
-      table.className = 'min-w-full text-sm';
-      const thead = document.createElement('thead');
-      const trh = document.createElement('tr');
-      state.headers.forEach(h => {
-        const th = document.createElement('th');
-        th.className = 'sticky text-left px-3 py-2 border-b';
-        th.textContent = h;
-        trh.appendChild(th);
-      });
-      thead.appendChild(trh);
-      table.appendChild(thead);
-
-      const tbody = document.createElement('tbody');
-      pageIdx.forEach(i => {
-        const tr = document.createElement('tr');
-        tr.className = 'odd:bg-gray-50';
-        state.headers.forEach(h => {
-          const td = document.createElement('td');
-          td.className = 'px-3 py-2 border-b align-top';
-          td.textContent = state.data[i][h];
-          tr.appendChild(td);
-        });
-        tbody.appendChild(tr);
-      });
-      table.appendChild(tbody);
-      wrap.appendChild(table);
-
-      const out = byId('output');
-      out.innerHTML = '';
-      out.appendChild(wrap);
-    }
-
-    function renderCards(pageIdx) {
-      const grid = document.createElement('div');
-      grid.className = 'grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 p-4';
-      pageIdx.forEach(i => {
-        const card = document.createElement('div');
-        card.className = 'rounded-2xl border bg-white shadow p-4';
-        const dl = document.createElement('dl');
-        dl.className = 'space-y-2';
-        state.headers.forEach(h => {
-          const dt = document.createElement('dt');
-          dt.className = 'text-xs uppercase tracking-wide text-gray-500';
-          dt.textContent = h;
-          const dd = document.createElement('dd');
-          dd.className = 'text-sm';
-          dd.textContent = state.data[i][h];
-          const group = document.createElement('div');
-          group.appendChild(dt); group.appendChild(dd);
-          dl.appendChild(group);
-        });
-        card.appendChild(dl);
-        grid.appendChild(card);
-      });
-      const out = byId('output');
-      out.innerHTML = '';
-      out.appendChild(grid);
-    }
-
-    function renderPager(pages) {
-      const pager = byId('pager');
-      pager.innerHTML = '';
-
-      const makeBtn = (label, onClick, disabled=false) => {
-        const b = document.createElement('button');
-        b.textContent = label;
-        b.disabled = disabled;
-        b.className = 'px-3 py-1 rounded-xl border bg-white disabled:opacity-50';
-        b.onclick = onClick; return b;
-      };
-
-      pager.appendChild(makeBtn('⟨⟨', () => { state.page=1; render(); }, state.page===1));
-      pager.appendChild(makeBtn('⟨ Prev', () => { state.page=Math.max(1,state.page-1); render(); }, state.page===1));
-      pager.appendChild(document.createTextNode(` Page ${state.page} `));
-      pager.appendChild(makeBtn('Next ⟩', () => { state.page=state.page+1; render(); }));
-    }
-
-    // --- Export helpers ---
-    function buildHTMLSnippet(layout) {
-      if (layout === 'table') {
-        const headers = state.headers.map(h => `<th>${escapeHTML(h)}</th>`).join('');
-        const rows = state.data.map(row => `\n  <tr>${state.headers.map(h => `<td>${escapeHTML(String(row[h]))}</td>`).join('')}</tr>`).join('');
-        return `<table>\n  <thead><tr>${headers}</tr></thead>\n  <tbody>${rows}\n  </tbody>\n</table>`;
-      } else {
-        return state.data.map(row => {
-          const items = state.headers.map(h => `\n    <div><strong>${escapeHTML(h)}:</strong> ${escapeHTML(String(row[h]))}</div>`).join('');
-          return `<div class="card">${items}\n</div>`;
-        }).join('\n');
+      // break values into rows
+      let rows = [];
+      for (let i = 0; i < values.length; i += splitCols) {
+        rows.push(values.slice(i, i + splitCols));
       }
-    }
 
-    function downloadHTMLFile(fullDoc) {
-      const blob = new Blob([fullDoc], { type: 'text/html' });
-      const url = URL.createObjectURL(blob);
-      const a = document.createElement('a');
-      a.href = url; a.download = 'data-converted.html';
-      document.body.appendChild(a); a.click();
-      setTimeout(() => { URL.revokeObjectURL(url); a.remove(); }, 1000);
-    }
-
-    const escapeMap = { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' };
-    function escapeHTML(str) { return str.replace(/[&<>"']/g, ch => escapeMap[ch]); }
-
-    // --- Event wiring ---
-    byId('fileInput').addEventListener('change', async (e) => {
-      const file = e.target.files?.[0];
-      if (!file) return;
-      const text = await readTextFile(file);
-      byId('paste').value = text;
-      await ingest(text);
-      render();
-    });
-
-    byId('btnRender').addEventListener('click', async () => {
-      await ingest(byId('paste').value);
-      state.page = 1; render();
-    });
-
-    byId('btnClear').addEventListener('click', () => {
-      byId('paste').value = ''; state.data=[]; state.headers=[]; state.page=1; state.filteredIdx=[]; byId('output').innerHTML=''; byId('meta').textContent=''; byId('pager').innerHTML='';
-    });
-
-    byId('search').addEventListener('input', () => { state.page = 1; render(); });
-    byId('layout').addEventListener('change', render);
-    byId('pageSize').addEventListener('change', render);
-
-    byId('btnCopyHTML').addEventListener('click', async () => {
-      if (!state.data.length) return alert('Load some data first');
-      const snippet = buildHTMLSnippet(byId('layout').value);
-      await navigator.clipboard.writeText(snippet);
-      alert('HTML copied to clipboard');
-    });
-
-    byId('btnDownloadHTML').addEventListener('click', () => {
-      if (!state.data.length) return alert('Load some data first');
-      const snippet = buildHTMLSnippet(byId('layout').value);
-      const fullDoc = `<!doctype html>\n<html><head><meta charset=\"utf-8\"><title>Converted Data</title>\n<style>table{border-collapse:collapse}th,td{border:1px solid #ddd;padding:6px}</style></head><body>${snippet}</body></html>`;
-      downloadHTMLFile(fullDoc);
-    });
-
-    async function ingest(text) {
-      const fmt = detectFormat(text);
-      if (!fmt) { alert('No data detected'); return; }
-      if (fmt === 'json') {
-        const records = parseJSONLike(text);
-        const { headers, data } = fromJSONRecords(records);
-        state.headers = headers; state.data = data;
-      } else {
-        const delimiter = fmt === 'tsv' ? '\t' : ',';
-        const rows = parseDelimited(text, delimiter);
-        const { headers, data } = normalizeToObjects(rows, byId('headerRow').checked);
-        state.headers = headers; state.data = data;
+      // build table
+      let html = "<div class='table-wrap'><table class='min-w-full border border-gray-300'>";
+      html += "<thead><tr>";
+      for (let c = 0; c < splitCols; c++) {
+        html += `<th class='border px-2 py-1 sticky'>Column ${c+1}</th>`;
       }
+      html += "</tr></thead><tbody>";
+      rows.forEach(r => {
+        html += "<tr>";
+        for (let c = 0; c < splitCols; c++) {
+          html += `<td class='border px-2 py-1'>${r[c] || ""}</td>`;
+        }
+        html += "</tr>";
+      });
+      html += "</tbody></table></div>";
+
+      byId("output").innerHTML = html;
     }
 
-    // Demo data (you can delete this)
-    const demoCSV = `name,price,stock\nWidget,19.99,42\nGadget,9.50,10\nThingamajig,2.99,100`;
-    byId('paste').value = demoCSV;
-    ingest(demoCSV).then(render);
+    // Hook button
+    byId("btnRender").addEventListener("click", render);
   </script>
 </body>
 </html>
