@@ -1,0 +1,461 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Music Library</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            background-color: #f8f9fa;
+            padding: 20px 0;
+        }
+        .music-container {
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 0 15px rgba(0,0,0,0.1);
+            padding: 25px;
+        }
+        .music-item {
+            padding: 8px 12px;
+            margin-bottom: 5px;
+            border-left: 3px solid transparent;
+            transition: all 0.2s;
+            font-family: monospace;
+        }
+        .music-item:hover {
+            background-color: #f0f0f0;
+            border-left: 3px solid #0d6efd;
+        }
+        .category-header {
+            background-color: #e9ecef;
+            padding: 10px 15px;
+            border-radius: 5px;
+            margin: 20px 0 15px 0;
+            font-weight: bold;
+            color: #495057;
+        }
+        h1 {
+            color: #212529;
+            margin-bottom: 25px;
+            padding-bottom: 15px;
+            border-bottom: 2px solid #dee2e6;
+        }
+    </style>
+</head>
+<body>
+    <div class="container music-container">
+        <h1 class="text-center">Music Library</h1>
+        
+        <div class="row">
+            <!-- 60S Column -->
+            <div class="col-md-3 col-sm-6">
+                <div class="category-header">60S</div>
+                <div class="music-item">A Tale or Two</div>
+                <div class="music-item">At the Commune</div>
+                <div class="music-item">Baritone Boss</div>
+                <div class="music-item">Bright Ideas</div>
+                <div class="music-item">British Invasion</div>
+                <div class="music-item">Cement Cathedral</div>
+                <div class="music-item">Cheeky Lad</div>
+                <div class="music-item">Creamy Fields</div>
+                <div class="music-item">Crunchy Munchie</div>
+                <div class="music-item">Deep Fuzz</div>
+                <div class="music-item">Distorted Faces</div>
+                <div class="music-item">Down the Rabbit Hole</div>
+                <div class="music-item">Dropout Drums</div>
+                <div class="music-item">Early Wave</div>
+                <div class="music-item">Espionage</div>
+                <div class="music-item">Fairy Tale</div>
+                <div class="music-item">Fancy Fingers</div>
+                <div class="music-item">Feelin' Alright</div>
+                <div class="music-item">Freaky Folk Banjo</div>
+                <div class="music-item">Full Harvest</div>
+                <div class="music-item">Funky Reeds</div>
+                <div class="music-item">Go-Go Boots</div>
+                <div class="music-item">Got Experience_</div>
+                <div class="music-item">High Society</div>
+                <div class="music-item">Iconic Organ</div>
+                <div class="music-item">Just in Time</div>
+                <div class="music-item">Lefty</div>
+                <div class="music-item">Liquid Walls</div>
+                <div class="music-item">Little Birdy</div>
+                <div class="music-item">Lost Choir</div>
+                <div class="music-item">Love Factory</div>
+                <div class="music-item">Love in the Sun</div>
+                <div class="music-item">Magnetic Vibes</div>
+                <div class="music-item">Magnolia Sugar</div>
+                <div class="music-item">Main Squeeze</div>
+                <div class="music-item">Merry Prankster</div>
+                <div class="music-item">Mind Palace</div>
+                <div class="music-item">Mountain Blues</div>
+                <div class="music-item">Mrs Eleanor</div>
+                <div class="music-item">Newfound Sound</div>
+                <div class="music-item">Old Flat Top</div>
+                <div class="music-item">Oozing Cool</div>
+                <div class="music-item">Outfield Seats</div>
+                <div class="music-item">Pull Out the Stops</div>
+                <div class="music-item">Pure and Simple</div>
+                <div class="music-item">Righteous Keys</div>
+                <div class="music-item">Shifted Perspective</div>
+                <div class="music-item">Shorebreak</div>
+                <div class="music-item">Slinky Swanky</div>
+                <div class="music-item">Smooth and Sly</div>
+                <div class="music-item">SoCal Summer</div>
+                <div class="music-item">Soul Proprietor</div>
+                <div class="music-item">Spring Fling</div>
+                <div class="music-item">Struck Out</div>
+                <div class="music-item">Sunny Days</div>
+                <div class="music-item">Tears</div>
+                <div class="music-item">The Shoals</div>
+                <div class="music-item">Tic Tac Plucking</div>
+                <div class="music-item">Tornado Chaser</div>
+                <div class="music-item">Tremellow</div>
+                <div class="music-item">True Events</div>
+                <div class="music-item">Trumpets on Tape</div>
+                <div class="music-item">Up in the Sky</div>
+                <div class="music-item">Voodoo Magic</div>
+                <div class="music-item">Walk All Over You</div>
+                <div class="music-item">Walrus Man</div>
+                <div class="music-item">Warm Tube Keys</div>
+                <div class="music-item">Whatcha Wanna Do</div>
+                <div class="music-item">Wirey Old Man</div>
+                <div class="music-item">World Tour</div>
+            </div>
+            
+            <!-- 70S Column -->
+            <div class="col-md-3 col-sm-6">
+                <div class="category-header">70S</div>
+                <div class="music-item">Acid Washed</div>
+                <div class="music-item">Anti-War</div>
+                <div class="music-item">At Your Leisure</div>
+                <div class="music-item">Ballad All-Star</div>
+                <div class="music-item">Bell Bottom Battery</div>
+                <div class="music-item">Bell Bottom Glow</div>
+                <div class="music-item">Black Sunday</div>
+                <div class="music-item">Blazin'</div>
+                <div class="music-item">Boogie Down</div>
+                <div class="music-item">Boulevard Strut</div>
+                <div class="music-item">Brass Clouds</div>
+                <div class="music-item">Brass Polish</div>
+                <div class="music-item">Buggin' Out</div>
+                <div class="music-item">Close Your Eyes</div>
+                <div class="music-item">Cool Cats</div>
+                <div class="music-item">Country Campfire</div>
+                <div class="music-item">Daydream Strings</div>
+                <div class="music-item">Dirty Disco</div>
+                <div class="music-item">Dirty Ivory</div>
+                <div class="music-item">Dream of Love</div>
+                <div class="music-item">Dreaming in Paisley</div>
+                <div class="music-item">Easy Breezy</div>
+                <div class="music-item">Flip Side</div>
+                <div class="music-item">Freaky People</div>
+                <div class="music-item">Funkalicious</div>
+                <div class="music-item">Funky Wah</div>
+                <div class="music-item">Furry Guitar</div>
+                <div class="music-item">Get It Rollin'</div>
+                <div class="music-item">Get Thumped</div>
+                <div class="music-item">Gilded Lily</div>
+                <div class="music-item">Greasy Groovers</div>
+                <div class="music-item">Groovin' Bass</div>
+                <div class="music-item">Groovy Visions</div>
+                <div class="music-item">Hands Up Hips Out</div>
+                <div class="music-item">Heading Uptown</div>
+                <div class="music-item">Hot Fuzz</div>
+                <div class="music-item">Into the Future</div>
+                <div class="music-item">Isle of Groove</div>
+                <div class="music-item">Legendary Keys</div>
+                <div class="music-item">Love and Guitars</div>
+                <div class="music-item">Magic Tones</div>
+                <div class="music-item">Make Me Rich</div>
+                <div class="music-item">Max Sax</div>
+                <div class="music-item">Memories</div>
+                <div class="music-item">Mohair Synth</div>
+                <div class="music-item">Motor City Memories</div>
+                <div class="music-item">Motown Chops</div>
+                <div class="music-item">Old School</div>
+                <div class="music-item">One Night Only</div>
+                <div class="music-item">Open Mic</div>
+                <div class="music-item">Paranoid Bass</div>
+                <div class="music-item">Partystarter</div>
+                <div class="music-item">Piano Fuzz</div>
+                <div class="music-item">Piano World</div>
+                <div class="music-item">Portable Organ</div>
+                <div class="music-item">Pseudo Strings</div>
+                <div class="music-item">Pulsarius</div>
+                <div class="music-item">Rainy Days</div>
+                <div class="music-item">Ribbons in Your Hair</div>
+                <div class="music-item">Ride the Wave</div>
+                <div class="music-item">Right on Time</div>
+                <div class="music-item">Rock Riffage</div>
+                <div class="music-item">Rocket Bass</div>
+                <div class="music-item">School of Punk</div>
+                <div class="music-item">Seeing Double</div>
+                <div class="music-item">Seeking Brightness</div>
+                <div class="music-item">Shag Rug Shuffle</div>
+                <div class="music-item">Silky Smooth</div>
+                <div class="music-item">Skyline Sunshine</div>
+                <div class="music-item">Slide Right In</div>
+                <div class="music-item">Slow Rollin'</div>
+                <div class="music-item">Smooth Sailing</div>
+                <div class="music-item">Soul on Fire</div>
+                <div class="music-item">Soul Patch</div>
+                <div class="music-item">Stained Glass</div>
+                <div class="music-item">Steady On</div>
+                <div class="music-item">Stellar Skies</div>
+                <div class="music-item">Steppin' Up</div>
+                <div class="music-item">Stereo Daydream</div>
+                <div class="music-item">Storyteller</div>
+                <div class="music-item">Strange Daze</div>
+                <div class="music-item">String Fever</div>
+                <div class="music-item">Summer Days</div>
+                <div class="music-item">Sunday Magic</div>
+                <div class="music-item">Super Strut</div>
+                <div class="music-item">Superbloom</div>
+                <div class="music-item">Sweet and Low</div>
+                <div class="music-item">Swirling Backdrop</div>
+                <div class="music-item">The High Life</div>
+                <div class="music-item">The Lo-Down</div>
+                <div class="music-item">Upper Brass</div>
+                <div class="music-item">Velvet Edge</div>
+                <div class="music-item">Vintage Clav</div>
+                <div class="music-item">Vintage Nostalgia</div>
+                <div class="music-item">Vintage Psy-Funk</div>
+                <div class="music-item">We Were Young</div>
+            </div>
+            
+            <!-- 80S Column -->
+            <div class="col-md-3 col-sm-6">
+                <div class="category-header">80S</div>
+                <div class="music-item">A Big Entrance</div>
+                <div class="music-item">A Bit of Bite</div>
+                <div class="music-item">Acid Bass</div>
+                <div class="music-item">Afterschool Special</div>
+                <div class="music-item">Bad Influence</div>
+                <div class="music-item">Bayside</div>
+                <div class="music-item">Beach Bass</div>
+                <div class="music-item">Big Time Drums</div>
+                <div class="music-item">Bionic Bliss</div>
+                <div class="music-item">Bouncy Funk</div>
+                <div class="music-item">Brash Brass</div>
+                <div class="music-item">Built for Strength</div>
+                <div class="music-item">Camp Secrets</div>
+                <div class="music-item">Caught On Tape</div>
+                <div class="music-item">Cityscape</div>
+                <div class="music-item">Codebreaker</div>
+                <div class="music-item">Cosmic Cabana</div>
+                <div class="music-item">Crunch Odyssey</div>
+                <div class="music-item">Crystal Pixels</div>
+                <div class="music-item">Digital Quest</div>
+                <div class="music-item">Dream Scene</div>
+                <div class="music-item">Electric Motion</div>
+                <div class="music-item">Eye of the Storm</div>
+                <div class="music-item">Fight or Flight</div>
+                <div class="music-item">From the Ashes</div>
+                <div class="music-item">Full Spectrum</div>
+                <div class="music-item">Future Boogie</div>
+                <div class="music-item">Gameworld</div>
+                <div class="music-item">Glass Keys</div>
+                <div class="music-item">Hearts on Fire</div>
+                <div class="music-item">Hell Bent</div>
+                <div class="music-item">Interstellar Lover</div>
+                <div class="music-item">Journey Home</div>
+                <div class="music-item">Limo Bass</div>
+                <div class="music-item">Living Large</div>
+                <div class="music-item">Magenta Sun</div>
+                <div class="music-item">Mainframe Marauders</div>
+                <div class="music-item">Maximum Shine</div>
+                <div class="music-item">Miami Edge</div>
+                <div class="music-item">Misty Eyes</div>
+                <div class="music-item">Moment of Truth</div>
+                <div class="music-item">Moody Brass Pad</div>
+                <div class="music-item">Moonlight Mall</div>
+                <div class="music-item">Motion Picture</div>
+                <div class="music-item">Neon Sky</div>
+                <div class="music-item">New Waver</div>
+                <div class="music-item">Nightvision</div>
+                <div class="music-item">Opening Credits</div>
+                <div class="music-item">Phully Philled</div>
+                <div class="music-item">Power of Love</div>
+                <div class="music-item">Primitive Machine</div>
+                <div class="music-item">Programmed Dreams</div>
+                <div class="music-item">Prom Night</div>
+                <div class="music-item">Real Leather</div>
+                <div class="music-item">Riff Lord</div>
+                <div class="music-item">Rock Steady</div>
+                <div class="music-item">Romantic Pad</div>
+                <div class="music-item">Sailing Away</div>
+                <div class="music-item">Serene Planet</div>
+                <div class="music-item">Skyway Strut</div>
+                <div class="music-item">Slow Dance</div>
+                <div class="music-item">Smooth Leather</div>
+                <div class="music-item">Sound Check</div>
+                <div class="music-item">Stadium Star</div>
+                <div class="music-item">Steady Pulse</div>
+                <div class="music-item">Strange Times</div>
+                <div class="music-item">Summer Memories</div>
+                <div class="music-item">Supersized</div>
+                <div class="music-item">Synthpop Galaxy</div>
+                <div class="music-item">Tasty Bass</div>
+                <div class="music-item">Tender Heart</div>
+                <div class="music-item">The Night Sky</div>
+                <div class="music-item">Together Forever</div>
+                <div class="music-item">Tokyo Twinkle</div>
+                <div class="music-item">True Inspiration</div>
+                <div class="music-item">Trust Your Training</div>
+                <div class="music-item">Ultramega</div>
+                <div class="music-item">Uncaged</div>
+                <div class="music-item">VHS Flashback</div>
+                <div class="music-item">Virtual Love</div>
+                <div class="music-item">Virtual Marathon</div>
+                <div class="music-item">Youtopia</div>
+            </div>
+            
+            <!-- ARA Column -->
+            <div class="col-md-3 col-sm-6">
+                <div class="category-header">ARA</div>
+                <div class="music-item">2051 AD</div>
+                <div class="music-item">Absolute Peace</div>
+                <div class="music-item">Aerial Transmission</div>
+                <div class="music-item">Afterlife</div>
+                <div class="music-item">Airy Ambitions</div>
+                <div class="music-item">Ancient History</div>
+                <div class="music-item">Angelic Forest</div>
+                <div class="music-item">Apparition</div>
+                <div class="music-item">Aquatico</div>
+                <div class="music-item">Axis</div>
+                <div class="music-item">Beacon of Hope</div>
+                <div class="music-item">Bloom</div>
+                <div class="music-item">Boundless</div>
+                <div class="music-item">Brainwash</div>
+                <div class="music-item">Breathe Pad</div>
+                <div class="music-item">Carillon</div>
+                <div class="music-item">Cautious Optimism</div>
+                <div class="music-item">Celestial Orchestra</div>
+                <div class="music-item">Ceremony</div>
+                <div class="music-item">Circling</div>
+                <div class="music-item">Cloud Over</div>
+                <div class="music-item">Cloudiness</div>
+                <div class="music-item">Colorful Pad</div>
+                <div class="music-item">Contours</div>
+                <div class="music-item">Cosmic Dust</div>
+                <div class="music-item">Crescent Beach</div>
+                <div class="music-item">Curbside</div>
+                <div class="music-item">Disturbed</div>
+                <div class="music-item">Divine Breath</div>
+                <div class="music-item">Dreamy Ambience</div>
+                <div class="music-item">Dusty Memory</div>
+                <div class="music-item">Earthshine</div>
+                <div class="music-item">Entwined</div>
+                <div class="music-item">Equator Rift</div>
+                <div class="music-item">Escape Plan</div>
+                <div class="music-item">Everworld</div>
+                <div class="music-item">Extended Reeds</div>
+                <div class="music-item">False Memory</div>
+                <div class="music-item">First Light</div>
+                <div class="music-item">Float Down</div>
+                <div class="music-item">Floating Houses</div>
+                <div class="music-item">Fluoresce</div>
+                <div class="music-item">Frozen Moments</div>
+                <div class="music-item">Frozen Surface</div>
+                <div class="music-item">Galapagos</div>
+                <div class="music-item">Glass Dancer</div>
+                <div class="music-item">Glass Recycle</div>
+                <div class="music-item">Harmonic Ghosts</div>
+                <div class="music-item">Harp Flower</div>
+                <div class="music-item">Heart Strings</div>
+                <div class="music-item">Hidden Waters</div>
+                <div class="music-item">Hourglass</div>
+                <div class="music-item">Immersion</div>
+                <div class="music-item">Immovable</div>
+                <div class="music-item">Impermanence</div>
+                <div class="music-item">Incandescence</div>
+                <div class="music-item">Infinitum</div>
+                <div class="music-item">Inner Journey</div>
+                <div class="music-item">Intuition</div>
+                <div class="music-item">Ivory Coast</div>
+                <div class="music-item">Legendary Shine</div>
+                <div class="music-item">Longing</div>
+                <div class="music-item">Lost Dimension</div>
+                <div class="music-item">Lost Memory</div>
+                <div class="music-item">Lucid Uke</div>
+                <div class="music-item">Lunar Gleam</div>
+                <div class="music-item">Lunar Lookout</div>
+                <div class="music-item">Meditate</div>
+                <div class="music-item">Migrate</div>
+                <div class="music-item">Miss Venus</div>
+                <div class="music-item">Monolithic</div>
+                <div class="music-item">Moonlight</div>
+                <div class="music-item">Morphing Ambience</div>
+                <div class="music-item">Muted Shade</div>
+                <div class="music-item">Neptunian Ballad</div>
+                <div class="music-item">Neptunian Rain</div>
+                <div class="music-item">New Light</div>
+                <div class="music-item">Olympus Mons</div>
+                <div class="music-item">Orchestrina</div>
+                <div class="music-item">Particle Drift</div>
+                <div class="music-item">Passageway</div>
+                <div class="music-item">Phosphine</div>
+                <div class="music-item">Piano Dream</div>
+                <div class="music-item">Piano Spa</div>
+                <div class="music-item">Placidronia</div>
+                <div class="music-item">Primordial</div>
+                <div class="music-item">Radiate</div>
+                <div class="music-item">Recurrent</div>
+                <div class="music-item">Reflective Texture</div>
+                <div class="music-item">Rejuvenation</div>
+                <div class="music-item">Remember</div>
+                <div class="music-item">Safe Distance</div>
+                <div class="music-item">Sanctuary</div>
+                <div class="music-item">Saturiane Wave</div>
+                <div class="music-item">Scintillation</div>
+                <div class="music-item">Secrets</div>
+                <div class="music-item">Serenity</div>
+                <div class="music-item">Shifting Path</div>
+                <div class="music-item">Shimmer Synths</div>
+                <div class="music-item">Slipstream</div>
+                <div class="music-item">Sliver of Light</div>
+                <div class="music-item">Solemnity</div>
+                <div class="music-item">Space Cello</div>
+                <div class="music-item">Spectre</div>
+                <div class="music-item">Spirit City</div>
+                <div class="music-item">Stargazer</div>
+                <div class="music-item">Stargazing</div>
+                <div class="music-item">Steely</div>
+                <div class="music-item">String Fantasy</div>
+                <div class="music-item">Subflooring</div>
+                <div class="music-item">Suborbital</div>
+                <div class="music-item">Suspenseful</div>
+                <div class="music-item">Sustained</div>
+                <div class="music-item">Synthetic Tears</div>
+                <div class="music-item">The Simple Times</div>
+                <div class="music-item">Thin Air</div>
+                <div class="music-item">Threshold</div>
+                <div class="music-item">Time Lapse</div>
+                <div class="music-item">Trace</div>
+                <div class="music-item">Tropic Ennui</div>
+                <div class="music-item">True Splendor</div>
+                <div class="music-item">Twinkle Waves</div>
+                <div class="music-item">Ultraviolet</div>
+                <div class="music-item">Unity</div>
+                <div class="music-item">Unspoken</div>
+                <div class="music-item">Vibrations</div>
+                <div class="music-item">Voyager</div>
+                <div class="music-item">Waveri Sirene</div>
+                <div class="music-item">Wish</div>
+                <div class="music-item">Wonderworld</div>
+                <div class="music-item">Worship</div>
+                <div class="music-item">Yield</div>
+                <div class="music-item">Zithosphere</div>
+            </div>
+        </div>
+        
+        <!-- Note: Only showing first 4 categories for brevity -->
+        <div class="text-center mt-4">
+            <p class="text-muted">... and many more categories (truncated for display)</p>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
