@@ -26,8 +26,17 @@
       </div>
     </div>
 
-    <!-- Output -->
-    <div id="output" class="bg-white rounded-xl shadow p-3"></div>
+    <!-- Table Output -->
+    <div id="output" class="bg-white rounded-xl shadow p-3 mb-6"></div>
+
+    <!-- HTML Code Output -->
+    <div class="bg-white rounded-xl shadow p-3">
+      <div class="flex justify-between items-center mb-2">
+        <h2 class="font-semibold">Generated HTML Code</h2>
+        <button id="copyBtn" class="px-3 py-1 rounded bg-blue-600 text-white text-sm">Copy HTML</button>
+      </div>
+      <textarea id="htmlCode" readonly class="w-full h-60 p-3 font-mono text-sm bg-gray-100 rounded"></textarea>
+    </div>
   </div>
 
   <script>
@@ -65,10 +74,22 @@
       });
       html += "</tbody></table></div>";
 
+      // show table preview
       byId("output").innerHTML = html;
+
+      // put raw HTML code into textarea
+      const plainHTML = html.replace(/ class='[^']*'/g, ""); // remove Tailwind classes for cleaner code
+      byId("htmlCode").value = plainHTML;
     }
 
-    // Hook button
+    // Copy button
+    byId("copyBtn").addEventListener("click", () => {
+      byId("htmlCode").select();
+      document.execCommand("copy");
+      alert("HTML code copied!");
+    });
+
+    // Hook render button
     byId("btnRender").addEventListener("click", render);
   </script>
 </body>
