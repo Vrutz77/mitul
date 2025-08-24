@@ -1,0 +1,2525 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>60s & 70s Music Styles</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+      }
+
+      body {
+        background: linear-gradient(135deg, #f9c5d1, #c5c6f5, #b4f0b4);
+        color: #333;
+        min-height: 100vh;
+        padding: 20px;
+      }
+
+      .container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 20px;
+      }
+
+      header {
+        text-align: center;
+        margin-bottom: 40px;
+        padding: 30px;
+        background: rgba(255, 255, 255, 0.85);
+        border-radius: 15px;
+        box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+      }
+
+      h1 {
+        font-size: 3.2rem;
+        color: #6a0dad;
+        margin-bottom: 10px;
+        text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+      }
+
+      .subtitle {
+        font-size: 1.4rem;
+        color: #ff6b6b;
+        margin-bottom: 20px;
+      }
+
+      .description {
+        font-size: 1.1rem;
+        color: #555;
+        max-width: 800px;
+        margin: 0 auto;
+        line-height: 1.6;
+      }
+
+      .columns {
+        display: flex;
+        gap: 30px;
+        flex-wrap: wrap;
+      }
+
+      .column {
+        flex: 1;
+        min-width: 300px;
+        background: rgba(255, 255, 255, 0.9);
+        border-radius: 15px;
+        overflow: hidden;
+        box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+      }
+
+      .column-header {
+        padding: 20px;
+        text-align: center;
+        background: linear-gradient(135deg, #6a0dad, #8a2be2);
+        color: white;
+      }
+
+      .column-header.seventies {
+        background: linear-gradient(135deg, #ff6b6b, #ff8e8e);
+      }
+
+      .music-list {
+        list-style: none;
+        max-height: 600px;
+        overflow-y: auto;
+      }
+
+      .music-item {
+        padding: 15px 20px;
+        border-bottom: 1px solid #eee;
+        font-size: 1.1rem;
+        transition: all 0.3s ease;
+        color: #444;
+      }
+
+      .music-item:last-child {
+        border-bottom: none;
+      }
+
+      .music-item:hover {
+        background-color: #6a0dad;
+        color: white;
+        padding-left: 30px;
+        cursor: pointer;
+      }
+
+      .seventies .music-item:hover {
+        background-color: #ff6b6b;
+      }
+
+      footer {
+        text-align: center;
+        margin-top: 40px;
+        color: #666;
+        font-size: 0.9rem;
+        padding: 20px;
+        background: rgba(255, 255, 255, 0.8);
+        border-radius: 10px;
+      }
+
+      @media (max-width: 768px) {
+        .columns {
+          flex-direction: column;
+        }
+
+        h1 {
+          font-size: 2.5rem;
+        }
+
+        .music-item {
+          padding: 12px 15px;
+          font-size: 1rem;
+        }
+      }
+
+      :root {
+        --bg: #0f172a; /* slate-900 */
+        --bg-soft: #111827; /* gray-900 */
+        --text: #e5e7eb; /* gray-200 */
+        --accent: #60a5fa; /* blue-400 */
+        --ring: rgba(96, 165, 250, 0.35);
+      }
+      * {
+        box-sizing: border-box;
+      }
+      html,
+      body {
+        margin: 0;
+        padding: 0;
+        font-family: system-ui, -apple-system, Segoe UI, Roboto,
+          "Helvetica Neue", Arial, "Noto Sans", "Apple Color Emoji",
+          "Segoe UI Emoji";
+        background: var(--bg);
+        color: var(--text);
+      }
+
+      .nav-wrap {
+        position: sticky;
+        top: 0;
+        z-index: 50;
+        backdrop-filter: saturate(160%) blur(8px);
+        background: linear-gradient(
+          180deg,
+          rgba(15, 23, 42, 0.9),
+          rgba(15, 23, 42, 0.6)
+        );
+        border-bottom: 1px solid rgba(148, 163, 184, 0.2);
+      }
+      .nav {
+        max-width: 1100px;
+        margin: 0 auto;
+        padding: 0.75rem 1rem;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 0.75rem;
+      }
+      .brand {
+        font-weight: 700;
+        letter-spacing: 0.3px;
+        display: flex;
+        align-items: center;
+        gap: 0.6rem;
+      }
+      .brand .dot {
+        width: 8px;
+        height: 8px;
+        border-radius: 999px;
+        background: var(--accent);
+        box-shadow: 0 0 0 6px var(--ring);
+      }
+
+      .toggle {
+        display: none;
+        background: transparent;
+        border: 1px solid rgba(148, 163, 184, 0.35);
+        color: var(--text);
+        padding: 0.5rem 0.6rem;
+        border-radius: 0.6rem;
+        cursor: pointer;
+      }
+      .toggle:focus-visible {
+        outline: 2px solid var(--accent);
+        outline-offset: 2px;
+      }
+      /* Menu container */
+      .menu {
+        display: flex;
+        align-items: center;
+        gap: 0.25rem;
+        flex-wrap: wrap;
+      }
+
+      /* Each link (chip style) */
+      .menu a {
+        --chip-bg: rgba(255, 255, 255, 0.06);
+        display: inline-block;
+        text-decoration: none;
+        color: var(--text);
+        padding: 0.5rem 0.75rem;
+        border-radius: 999px;
+        font-size: 0.95rem;
+        line-height: 1;
+        border: 1px solid rgba(148, 163, 184, 0.25);
+        background: var(--chip-bg);
+        transition: transform 0.16s ease, background 0.16s ease,
+          border-color 0.16s ease, box-shadow 0.16s ease;
+        white-space: nowrap;
+      }
+      .menu a:hover {
+        transform: translateY(-1px);
+        border-color: rgba(96, 165, 250, 0.5);
+        box-shadow: 0 4px 20px -8px var(--ring);
+      }
+      .menu a.active {
+        background: rgba(96, 165, 250, 0.18);
+        border-color: var(--accent);
+      }
+
+      /* Mobile styles */
+      @media (max-width: 768px) {
+        .toggle {
+          display: inline-flex;
+          align-items: center;
+          gap: 0.4rem;
+        }
+        .menu {
+          display: none; /* hidden by default on mobile */
+          flex-direction: column;
+          align-items: stretch;
+          gap: 0.5rem;
+          padding: 0.75rem 0 0;
+        }
+        .menu.open {
+          display: flex;
+        }
+        .menu a {
+          width: 100%;
+          text-align: center;
+        }
+      }
+
+      /* Optional: horizontally scrollable chips on small laptops when many items */
+      @media (min-width: 769px) and (max-width: 1024px) {
+        .menu {
+          flex-wrap: nowrap;
+          overflow-x: auto;
+          white-space: nowrap;
+          scrollbar-width: thin;
+        }
+        .menu::-webkit-scrollbar {
+          height: 8px;
+        }
+        .menu::-webkit-scrollbar-thumb {
+          background: rgba(148, 163, 184, 0.35);
+          border-radius: 999px;
+        }
+      }
+
+      main {
+        max-width: 1100px;
+        margin: 1.25rem auto;
+        padding: 0 1rem;
+      }
+      .hint {
+        opacity: 0.7;
+        font-size: 0.95rem;
+      }
+    </style>
+    <script>
+      const btn = document.getElementById("navToggle");
+      const menu = document.getElementById("menu");
+      btn.addEventListener("click", () => {
+        const open = menu.classList.toggle("open");
+        btn.setAttribute("aria-expanded", open ? "true" : "false");
+      });
+
+      // Optional: mark active item based on hash
+      function markActive() {
+        const hash = decodeURIComponent(location.hash || "").replace("#", "");
+        document
+          .querySelectorAll(".menu a")
+          .forEach((a) => a.classList.remove("active"));
+        if (!hash) return;
+        const el = document.querySelector(
+          '.menu a[href="#' + CSS.escape(hash) + '"]'
+        );
+        if (el) el.classList.add("active");
+      }
+      window.addEventListener("hashchange", markActive);
+      markActive();
+    </script>
+  </head>
+  <body>
+    <header class="nav-wrap">
+      <nav class="nav" aria-label="Primary">
+        <div class="brand" aria-label="Brand">
+          <span class="dot" aria-hidden="true"></span>
+          <span>AutoNav</span>
+        </div>
+        <button
+          class="toggle"
+          id="navToggle"
+          aria-expanded="false"
+          aria-controls="menu"
+        >
+          <svg
+            width="22"
+            height="22"
+            viewBox="0 0 24 24"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+            aria-hidden="true"
+          >
+            <path
+              d="M3 6h18M3 12h18M3 18h18"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+            />
+          </svg>
+          Menu
+        </button>
+        <div id="menu" class="menu" role="menubar">
+          <!-- MENU ITEMS (from doc.txt prefixes) -->
+          <a href="#60S" role="menuitem">60S</a>
+          <a href="#70S" role="menuitem">70S</a>
+          <a href="#80S" role="menuitem">80S</a>
+          <a href="#ARA" role="menuitem">ARA</a>
+          <a href="#ATH" role="menuitem">ATH</a>
+          <a href="#BBX" role="menuitem">BBX</a>
+          <a href="#BSL" role="menuitem">BSL</a>
+          <a href="#BTE" role="menuitem">BTE</a>
+          <a href="#CHP" role="menuitem">CHP</a>
+          <a href="#CRT" role="menuitem">CRT</a>
+          <a href="#DBK" role="menuitem">DBK</a>
+          <a href="#DMC" role="menuitem">DMC</a>
+          <a href="#DRP" role="menuitem">DRP</a>
+          <a href="#DSH" role="menuitem">DSH</a>
+          <a href="#DTV" role="menuitem">DTV</a>
+          <a href="#EXP" role="menuitem">EXP</a>
+          <a href="#FBK" role="menuitem">FBK</a>
+          <a href="#FOS" role="menuitem">FOS</a>
+          <a href="#HKD" role="menuitem">HKD</a>
+          <a href="#HNY" role="menuitem">HNY</a>
+          <a href="#IGR" role="menuitem">IGR</a>
+          <a href="#IHH" role="menuitem">IHH</a>
+          <a href="#IWD" role="menuitem">IWD</a>
+          <a href="#LED" role="menuitem">LED</a>
+          <a href="#MDC" role="menuitem">MDC</a>
+          <a href="#MMT" role="menuitem">MMT</a>
+          <a href="#NTR" role="menuitem">NTR</a>
+          <a href="#PCL" role="menuitem">PCL</a>
+          <a href="#PFC" role="menuitem">PFC</a>
+          <a href="#PSP" role="menuitem">PSP</a>
+          <a href="#PTC" role="menuitem">PTC</a>
+          <a href="#PTN" role="menuitem">PTN</a>
+          <a href="#RCR" role="menuitem">RCR</a>
+          <a href="#RTK" role="menuitem">RTK</a>
+          <a href="#STH" role="menuitem">STH</a>
+          <a href="#SZN" role="menuitem">SZN</a>
+          <a href="#TOY" role="menuitem">TOY</a>
+          <a href="#TPD" role="menuitem">TPD</a>
+          <a href="#TRD" role="menuitem">TRD</a>
+          <a href="#VCD" role="menuitem">VCD</a>
+          <a href="#VOS" role="menuitem">VOS</a>
+          <a href="#VTS" role="menuitem">VTS</a>
+          <a href="#WRP" role="menuitem">WRP</a>
+          <a href="#ZHR" role="menuitem">ZHR</a>
+        </div>
+      </nav>
+    </header>
+
+    <div class="container">
+      <!-- <header>
+            <h1>60s & 70s Music Styles</h1>
+            <p class="subtitle">Groovy Tunes from Two Iconic Decades</p>
+            <p class="description">Explore these iconic music styles that defined the sound of the 60s and 70s - from psychedelic rock to disco funk!</p>
+        </header> -->
+
+      <div class="columns">
+        <div class="column" id="60s">
+          <div class="column-header">
+            <h2>60S</h2>
+          </div>
+          <ul class="music-list">
+            <li class="music-item">A Tale or Two</li>
+            <li class="music-item">At the Commune</li>
+            <li class="music-item">Baritone Boss</li>
+            <li class="music-item">Bright Ideas</li>
+            <li class="music-item">British Invasion</li>
+            <li class="music-item">Cement Cathedral</li>
+            <li class="music-item">Cheeky Lad</li>
+            <li class="music-item">Creamy Fields</li>
+            <li class="music-item">Crunchy Munchie</li>
+            <li class="music-item">Deep Fuzz</li>
+            <li class="music-item">Distorted Faces</li>
+            <li class="music-item">Down the Rabbit Hole</li>
+            <li class="music-item">Dropout Drums</li>
+            <li class="music-item">Early Wave</li>
+            <li class="music-item">Espionage</li>
+            <li class="music-item">Fairy Tale</li>
+            <li class="music-item">Fancy Fingers</li>
+            <li class="music-item">Feelin' Alright</li>
+            <li class="music-item">Freaky Folk Banjo</li>
+            <li class="music-item">Full Harvest</li>
+            <li class="music-item">Funky Reeds</li>
+            <li class="music-item">Go-Go Boots</li>
+            <li class="music-item">Got Experience</li>
+            <li class="music-item">High Society</li>
+            <li class="music-item">Iconic Organ</li>
+            <li class="music-item">Just in Time</li>
+            <li class="music-item">Lefty</li>
+            <li class="music-item">Liquid Walls</li>
+            <li class="music-item">Little Birdy</li>
+            <li class="music-item">Lost Choir</li>
+            <li class="music-item">Love Factory</li>
+            <li class="music-item">Love in the Sun</li>
+            <li class="music-item">Magnetic Vibes</li>
+            <li class="music-item">Magnolia Sugar</li>
+            <li class="music-item">Main Squeeze</li>
+            <li class="music-item">Merry Prankster</li>
+            <li class="music-item">Mind Palace</li>
+            <li class="music-item">Mountain Blues</li>
+            <li class="music-item">Mrs Eleanor</li>
+            <li class="music-item">Newfound Sound</li>
+            <li class="music-item">Old Flat Top</li>
+            <li class="music-item">Oozing Cool</li>
+            <li class="music-item">Outfield Seats</li>
+            <li class="music-item">Pull Out the Stops</li>
+            <li class="music-item">Pure and Simple</li>
+            <li class="music-item">Righteous Keys</li>
+            <li class="music-item">Shifted Perspective</li>
+            <li class="music-item">Shorebreak</li>
+            <li class="music-item">Slinky Swanky</li>
+            <li class="music-item">Smooth and Sly</li>
+            <li class="music-item">SoCal Summer</li>
+            <li class="music-item">Soul Proprietor</li>
+            <li class="music-item">Spring Fling</li>
+            <li class="music-item">Struck Out</li>
+            <li class="music-item">Sunny Days</li>
+            <li class="music-item">Tears</li>
+            <li class="music-item">The Shoals</li>
+            <li class="music-item">Tic Tac Plucking</li>
+            <li class="music-item">Tornado Chaser</li>
+            <li class="music-item">Tremellow</li>
+            <li class="music-item">True Events</li>
+            <li class="music-item">Trumpets on Tape</li>
+            <li class="music-item">Up in the Sky</li>
+            <li class="music-item">Voodoo Magic</li>
+            <li class="music-item">Walk All Over You</li>
+            <li class="music-item">Walrus Man</li>
+            <li class="music-item">Warm Tube Keys</li>
+            <li class="music-item">Whatcha Wanna Do</li>
+            <li class="music-item">Wirey Old Man</li>
+            <li class="music-item">World Tour</li>
+          </ul>
+        </div>
+
+        <div class="column" id="70s">
+          <div class="column-header seventies">
+            <h2>70S</h2>
+          </div>
+          <ul class="music-list seventies">
+            <li class="music-item">Acid Washed</li>
+            <li class="music-item">Anti-War</li>
+            <li class="music-item">At Your Leisure</li>
+            <li class="music-item">Ballad All-Star</li>
+            <li class="music-item">Bell Bottom Battery</li>
+            <li class="music-item">Bell Bottom Glow</li>
+            <li class="music-item">Black Sunday</li>
+            <li class="music-item">Blazin'</li>
+            <li class="music-item">Boogie Down</li>
+            <li class="music-item">Boulevard Strut</li>
+            <li class="music-item">Brass Clouds</li>
+            <li class="music-item">Brass Polish</li>
+            <li class="music-item">Buggin' Out</li>
+            <li class="music-item">Close Your Eyes</li>
+            <li class="music-item">Cool Cats</li>
+            <li class="music-item">Country Campfire</li>
+            <li class="music-item">Daydream Strings</li>
+            <li class="music-item">Dirty Disco</li>
+            <li class="music-item">Dirty Ivory</li>
+            <li class="music-item">Dream of Love</li>
+            <li class="music-item">Dreaming in Paisley</li>
+            <li class="music-item">Easy Breezy</li>
+            <li class="music-item">Flip Side</li>
+            <li class="music-item">Freaky People</li>
+            <li class="music-item">Funkalicious</li>
+            <li class="music-item">Funky Wah</li>
+            <li class="music-item">Furry Guitar</li>
+            <li class="music-item">Get It Rollin'</li>
+            <li class="music-item">Get Thumped</li>
+            <li class="music-item">Gilded Lily</li>
+            <li class="music-item">Greasy Groovers</li>
+            <li class="music-item">Groovin' Bass</li>
+            <li class="music-item">Groovy Visions</li>
+            <li class="music-item">Hands Up Hips Out</li>
+            <li class="music-item">Heading Uptown</li>
+            <li class="music-item">Hot Fuzz</li>
+            <li class="music-item">Into the Future</li>
+            <li class="music-item">Isle of Groove</li>
+            <li class="music-item">Legendary Keys</li>
+            <li class="music-item">Love and Guitars</li>
+            <li class="music-item">Magic Tones</li>
+            <li class="music-item">Make Me Rich</li>
+            <li class="music-item">Max Sax</li>
+            <li class="music-item">Memories</li>
+            <li class="music-item">Mohair Synth</li>
+            <li class="music-item">Motor City Memories</li>
+            <li class="music-item">Motown Chops</li>
+            <li class="music-item">Old School</li>
+            <li class="music-item">One Night Only</li>
+            <li class="music-item">Open Mic</li>
+            <li class="music-item">Paranoid Bass</li>
+            <li class="music-item">Partystarter</li>
+            <li class="music-item">Piano Fuzz</li>
+            <li class="music-item">Piano World</li>
+            <li class="music-item">Portable Organ</li>
+            <li class="music-item">Pseudo Strings</li>
+            <li class="music-item">Pulsarius</li>
+            <li class="music-item">Rainy Days</li>
+            <li class="music-item">Ribbons in Your Hair</li>
+            <li class="music-item">Ride the Wave</li>
+            <li class="music-item">Right on Time</li>
+            <li class="music-item">Rock Riffage</li>
+            <li class="music-item">Rocket Bass</li>
+            <li class="music-item">School of Punk</li>
+            <li class="music-item">Seeing Double</li>
+            <li class="music-item">Seeking Brightness</li>
+            <li class="music-item">Shag Rug Shuffle</li>
+            <li class="music-item">Silky Smooth</li>
+            <li class="music-item">Skyline Sunshine</li>
+            <li class="music-item">Slide Right In</li>
+            <li class="music-item">Slow Rollin'</li>
+            <li class="music-item">Smooth Sailing</li>
+            <li class="music-item">Soul on Fire</li>
+            <li class="music-item">Soul Patch</li>
+            <li class="music-item">Stained Glass</li>
+            <li class="music-item">Steady On</li>
+            <li class="music-item">Stellar Skies</li>
+            <li class="music-item">Steppin' Up</li>
+            <li class="music-item">Stereo Daydream</li>
+            <li class="music-item">Storyteller</li>
+            <li class="music-item">Strange Daze</li>
+            <li class="music-item">String Fever</li>
+            <li class="music-item">Summer Days</li>
+            <li class="music-item">Sunday Magic</li>
+            <li class="music-item">Super Strut</li>
+            <li class="music-item">Superbloom</li>
+            <li class="music-item">Sweet and Low</li>
+            <li class="music-item">Swirling Backdrop</li>
+            <li class="music-item">The High Life</li>
+            <li class="music-item">The Lo-Down</li>
+            <li class="music-item">Upper Brass</li>
+            <li class="music-item">Velvet Edge</li>
+            <li class="music-item">Vintage Clav</li>
+            <li class="music-item">Vintage Nostalgia</li>
+            <li class="music-item">Vintage Psy-Funk</li>
+            <li class="music-item">We Were Young</li>
+          </ul>
+        </div>
+        <div class="column" id="80s">
+          <div class="column-header">
+            <h2>80S</h2>
+          </div>
+          <ul class="music-list">
+            <li class="music-item">A Big Entrance</li>
+            <li class="music-item">A Bit of Bite</li>
+            <li class="music-item">Acid Bass</li>
+            <li class="music-item">Afterschool Special</li>
+            <li class="music-item">Bad Influence</li>
+            <li class="music-item">Bayside</li>
+            <li class="music-item">Beach Bass</li>
+            <li class="music-item">Big Time Drums</li>
+            <li class="music-item">Bionic Bliss</li>
+            <li class="music-item">Bouncy Funk</li>
+            <li class="music-item">Brash Brass</li>
+            <li class="music-item">Built for Strength</li>
+            <li class="music-item">Camp Secrets</li>
+            <li class="music-item">Caught On Tape</li>
+            <li class="music-item">Cityscape</li>
+            <li class="music-item">Codebreaker</li>
+            <li class="music-item">Cosmic Cabana</li>
+            <li class="music-item">Crunch Odyssey</li>
+            <li class="music-item">Crystal Pixels</li>
+            <li class="music-item">Digital Quest</li>
+            <li class="music-item">Dream Scene</li>
+            <li class="music-item">Electric Motion</li>
+            <li class="music-item">Eye of the Storm</li>
+            <li class="music-item">Fight or Flight</li>
+            <li class="music-item">From the Ashes</li>
+            <li class="music-item">Full Spectrum</li>
+            <li class="music-item">Future Boogie</li>
+            <li class="music-item">Gameworld</li>
+            <li class="music-item">Glass Keys</li>
+            <li class="music-item">Hearts on Fire</li>
+            <li class="music-item">Hell Bent</li>
+            <li class="music-item">Interstellar Lover</li>
+            <li class="music-item">Journey Home</li>
+            <li class="music-item">Limo Bass</li>
+            <li class="music-item">Living Large</li>
+            <li class="music-item">Magenta Sun</li>
+            <li class="music-item">Mainframe Marauders</li>
+            <li class="music-item">Maximum Shine</li>
+            <li class="music-item">Miami Edge</li>
+            <li class="music-item">Misty Eyes</li>
+            <li class="music-item">Moment of Truth</li>
+            <li class="music-item">Moody Brass Pad</li>
+            <li class="music-item">Moonlight Mall</li>
+            <li class="music-item">Motion Picture</li>
+            <li class="music-item">Neon Sky</li>
+            <li class="music-item">New Waver</li>
+            <li class="music-item">Nightvision</li>
+            <li class="music-item">Opening Credits</li>
+            <li class="music-item">Phully Philled</li>
+            <li class="music-item">Power of Love</li>
+            <li class="music-item">Primitive Machine</li>
+            <li class="music-item">Programmed Dreams</li>
+            <li class="music-item">Prom Night</li>
+            <li class="music-item">Real Leather</li>
+            <li class="music-item">Riff Lord</li>
+            <li class="music-item">Rock Steady</li>
+            <li class="music-item">Romantic Pad</li>
+            <li class="music-item">Sailing Away</li>
+            <li class="music-item">Serene Planet</li>
+            <li class="music-item">Skyway Strut</li>
+            <li class="music-item">Slow Dance</li>
+            <li class="music-item">Smooth Leather</li>
+            <li class="music-item">Sound Check</li>
+            <li class="music-item">Stadium Star</li>
+            <li class="music-item">Steady Pulse</li>
+            <li class="music-item">Strange Times</li>
+            <li class="music-item">Summer Memories</li>
+            <li class="music-item">Supersized</li>
+            <li class="music-item">Synthpop Galaxy</li>
+            <li class="music-item">Tasty Bass</li>
+            <li class="music-item">Tender Heart</li>
+            <li class="music-item">The Night Sky</li>
+            <li class="music-item">Together Forever</li>
+            <li class="music-item">Tokyo Twinkle</li>
+            <li class="music-item">True Inspiration</li>
+            <li class="music-item">Trust Your Training</li>
+            <li class="music-item">Ultramega</li>
+            <li class="music-item">Uncaged</li>
+            <li class="music-item">VHS Flashback</li>
+            <li class="music-item">Virtual Love</li>
+            <li class="music-item">Virtual Marathon</li>
+            <li class="music-item">Youtopia</li>
+          </ul>
+        </div>
+        <div class="column" id="ara">
+          <div class="column-header">
+            <h2>ARA</h2>
+          </div>
+          <ul class="music-list">
+            <li class="music-item">2051 AD</li>
+            <li class="music-item">Absolute Peace</li>
+            <li class="music-item">Aerial Transmission</li>
+            <li class="music-item">Afterlife</li>
+            <li class="music-item">Airy Ambitions</li>
+            <li class="music-item">Ancient History</li>
+            <li class="music-item">Angelic Forest</li>
+            <li class="music-item">Apparition</li>
+            <li class="music-item">Aquatico</li>
+            <li class="music-item">Axis</li>
+            <li class="music-item">Beacon of Hope</li>
+            <li class="music-item">Bloom</li>
+            <li class="music-item">Boundless</li>
+            <li class="music-item">Brainwash</li>
+            <li class="music-item">Breathe Pad</li>
+            <li class="music-item">Carillon</li>
+            <li class="music-item">Cautious Optimism</li>
+            <li class="music-item">Celestial Orchestra</li>
+            <li class="music-item">Ceremony</li>
+            <li class="music-item">Circling</li>
+            <li class="music-item">Cloud Over</li>
+            <li class="music-item">Cloudiness</li>
+            <li class="music-item">Colorful Pad</li>
+            <li class="music-item">Contours</li>
+            <li class="music-item">Cosmic Dust</li>
+            <li class="music-item">Crescent Beach</li>
+            <li class="music-item">Curbside</li>
+            <li class="music-item">Disturbed</li>
+            <li class="music-item">Divine Breath</li>
+            <li class="music-item">Dreamy Ambience</li>
+            <li class="music-item">Dusty Memory</li>
+            <li class="music-item">Earthshine</li>
+            <li class="music-item">Entwined</li>
+            <li class="music-item">Equator Rift</li>
+            <li class="music-item">Escape Plan</li>
+            <li class="music-item">Everworld</li>
+            <li class="music-item">Extended Reeds</li>
+            <li class="music-item">False Memory</li>
+            <li class="music-item">First Light</li>
+            <li class="music-item">Float Down</li>
+            <li class="music-item">Floating Houses</li>
+            <li class="music-item">Fluoresce</li>
+            <li class="music-item">Frozen Moments</li>
+            <li class="music-item">Frozen Surface</li>
+            <li class="music-item">Galapagos</li>
+            <li class="music-item">Glass Dancer</li>
+            <li class="music-item">Glass Recycle</li>
+            <li class="music-item">Harmonic Ghosts</li>
+            <li class="music-item">Harp Flower</li>
+            <li class="music-item">Heart Strings</li>
+            <li class="music-item">Hidden Waters</li>
+            <li class="music-item">Hourglass</li>
+            <li class="music-item">Immersion</li>
+            <li class="music-item">Immovable</li>
+            <li class="music-item">Impermanence</li>
+            <li class="music-item">Incandescence</li>
+            <li class="music-item">Infinitum</li>
+            <li class="music-item">Inner Journey</li>
+            <li class="music-item">Intuition</li>
+            <li class="music-item">Ivory Coast</li>
+            <li class="music-item">Legendary Shine</li>
+            <li class="music-item">Longing</li>
+            <li class="music-item">Lost Dimension</li>
+            <li class="music-item">Lost Memory</li>
+            <li class="music-item">Lucid Uke</li>
+            <li class="music-item">Lunar Gleam</li>
+            <li class="music-item">Lunar Lookout</li>
+            <li class="music-item">Meditate</li>
+            <li class="music-item">Migrate</li>
+            <li class="music-item">Miss Venus</li>
+            <li class="music-item">Monolithic</li>
+            <li class="music-item">Moonlight</li>
+            <li class="music-item">Morphing Ambience</li>
+            <li class="music-item">Muted Shade</li>
+            <li class="music-item">Neptunian Ballad</li>
+            <li class="music-item">Neptunian Rain</li>
+            <li class="music-item">New Light</li>
+            <li class="music-item">Olympus Mons</li>
+            <li class="music-item">Orchestrina</li>
+            <li class="music-item">Particle Drift</li>
+            <li class="music-item">Passageway</li>
+            <li class="music-item">Phosphine</li>
+            <li class="music-item">Piano Dream</li>
+            <li class="music-item">Piano Spa</li>
+            <li class="music-item">Placidronia</li>
+            <li class="music-item">Primordial</li>
+            <li class="music-item">Radiate</li>
+            <li class="music-item">Recurrent</li>
+            <li class="music-item">Reflective Texture</li>
+            <li class="music-item">Rejuvenation</li>
+            <li class="music-item">Remember</li>
+            <li class="music-item">Safe Distance</li>
+            <li class="music-item">Sanctuary</li>
+            <li class="music-item">Saturiane Wave</li>
+            <li class="music-item">Scintillation</li>
+            <li class="music-item">Secrets</li>
+            <li class="music-item">Serenity</li>
+            <li class="music-item">Shifting Path</li>
+            <li class="music-item">Shimmer Synths</li>
+            <li class="music-item">Slipstream</li>
+            <li class="music-item">Sliver of Light</li>
+            <li class="music-item">Solemnity</li>
+            <li class="music-item">Space Cello</li>
+            <li class="music-item">Spectre</li>
+            <li class="music-item">Spirit City</li>
+            <li class="music-item">Stargazer</li>
+            <li class="music-item">Stargazing</li>
+            <li class="music-item">Steely</li>
+            <li class="music-item">String Fantasy</li>
+            <li class="music-item">Subflooring</li>
+            <li class="music-item">Suborbital</li>
+            <li class="music-item">Suspenseful</li>
+            <li class="music-item">Sustained</li>
+            <li class="music-item">Synthetic Tears</li>
+            <li class="music-item">The Simple Times</li>
+            <li class="music-item">Thin Air</li>
+            <li class="music-item">Threshold</li>
+            <li class="music-item">Time Lapse</li>
+            <li class="music-item">Trace</li>
+            <li class="music-item">Tropic Ennui</li>
+            <li class="music-item">True Splendor</li>
+            <li class="music-item">Twinkle Waves</li>
+            <li class="music-item">Ultraviolet</li>
+            <li class="music-item">Unity</li>
+            <li class="music-item">Unspoken</li>
+            <li class="music-item">Vibrations</li>
+            <li class="music-item">Voyager</li>
+            <li class="music-item">Waveri Sirene</li>
+            <li class="music-item">Wish</li>
+            <li class="music-item">Wonderworld</li>
+            <li class="music-item">Worship</li>
+            <li class="music-item">Yield</li>
+            <li class="music-item">Zithosphere</li>
+          </ul>
+        </div>
+        <div class="column" id="ath">
+          <div class="column-header">
+            <h2>ATH</h2>
+          </div>
+          <ul class="music-list">
+            <li class="music-item">A Summer Vibe</li>
+            <li class="music-item">A Touch of Deutsch</li>
+            <li class="music-item">All Tied Up</li>
+            <li class="music-item">Alone in the Hills</li>
+            <li class="music-item">Antagonize</li>
+            <li class="music-item">Anticipation</li>
+            <li class="music-item">Arise</li>
+            <li class="music-item">Asphalt</li>
+            <li class="music-item">Automated Bliss</li>
+            <li class="music-item">Avocado Summer</li>
+            <li class="music-item">Backways</li>
+            <li class="music-item">Barely Real</li>
+            <li class="music-item">Bass Invader</li>
+            <li class="music-item">Bassquake</li>
+            <li class="music-item">Before Dawn</li>
+            <li class="music-item">Better Than That</li>
+            <li class="music-item">Binary Showdown</li>
+            <li class="music-item">Black Light Ritual</li>
+            <li class="music-item">Boat Rockers</li>
+            <li class="music-item">Bombarded</li>
+            <li class="music-item">Bombast</li>
+            <li class="music-item">Bouncing Off</li>
+            <li class="music-item">Brain Fog</li>
+            <li class="music-item">Breakbeat Heat</li>
+            <li class="music-item">Bring It Back</li>
+            <li class="music-item">Broken Beach</li>
+            <li class="music-item">Bubble Time</li>
+            <li class="music-item">Bubblegum</li>
+            <li class="music-item">Bump And Grind</li>
+            <li class="music-item">Catalyst</li>
+            <li class="music-item">Centered</li>
+            <li class="music-item">Chasing Neons</li>
+            <li class="music-item">Colossal</li>
+            <li class="music-item">Computation</li>
+            <li class="music-item">Curiosity</li>
+            <li class="music-item">Cyber Siege</li>
+            <li class="music-item">Darkening Skies</li>
+            <li class="music-item">Dayglow Jungle</li>
+            <li class="music-item">Days and Nights</li>
+            <li class="music-item">Decaffeinated</li>
+            <li class="music-item">Deep Cuts</li>
+            <li class="music-item">Deep Talker</li>
+            <li class="music-item">Deeper Spaces</li>
+            <li class="music-item">Delicate Matter</li>
+            <li class="music-item">Destroy The Future</li>
+            <li class="music-item">Deviant</li>
+            <li class="music-item">Dicey Proposition</li>
+            <li class="music-item">Distant Memories</li>
+            <li class="music-item">Don't Be Weird</li>
+            <li class="music-item">Dub Island</li>
+            <li class="music-item">Eighties Sunset</li>
+            <li class="music-item">Elastic Bands</li>
+            <li class="music-item">Elation</li>
+            <li class="music-item">Electro Fragments</li>
+            <li class="music-item">Elusive</li>
+            <li class="music-item">Endurance</li>
+            <li class="music-item">Energize</li>
+            <li class="music-item">Euphorious</li>
+            <li class="music-item">Fading Light</li>
+            <li class="music-item">Final Warning</li>
+            <li class="music-item">Finer Things</li>
+            <li class="music-item">Flipped Out</li>
+            <li class="music-item">Foley Ritual</li>
+            <li class="music-item">Fractured</li>
+            <li class="music-item">Fully Charged</li>
+            <li class="music-item">Funky Freaky</li>
+            <li class="music-item">Funky Fried</li>
+            <li class="music-item">Future Bliss</li>
+            <li class="music-item">Ghosted</li>
+            <li class="music-item">Glowing Cities</li>
+            <li class="music-item">Golden Cycle</li>
+            <li class="music-item">Graphite</li>
+            <li class="music-item">Grounded</li>
+            <li class="music-item">Hardhead Bass</li>
+            <li class="music-item">Headliner Brass</li>
+            <li class="music-item">Heady Steady Go</li>
+            <li class="music-item">Hopes Up</li>
+            <li class="music-item">Hush Now</li>
+            <li class="music-item">Hypnagogic</li>
+            <li class="music-item">Ice Cold</li>
+            <li class="music-item">Iceberg</li>
+            <li class="music-item">In The Hotbox</li>
+            <li class="music-item">Inertia</li>
+            <li class="music-item">Inner Shine</li>
+            <li class="music-item">Jitters</li>
+            <li class="music-item">Just For Tonight</li>
+            <li class="music-item">Keep Your Cool</li>
+            <li class="music-item">Kicking Back</li>
+            <li class="music-item">La Piedra</li>
+            <li class="music-item">Loft Party</li>
+            <li class="music-item">Lost in My Head</li>
+            <li class="music-item">Lower Level</li>
+            <li class="music-item">Luminous Flux</li>
+            <li class="music-item">Lush Oasis</li>
+            <li class="music-item">Luster</li>
+            <li class="music-item">Making Progress</li>
+            <li class="music-item">Marching Elephants</li>
+            <li class="music-item">Mariner</li>
+            <li class="music-item">Mental Drift</li>
+            <li class="music-item">Miles Away</li>
+            <li class="music-item">Minor Adjustment</li>
+            <li class="music-item">Mischief</li>
+            <li class="music-item">Mixed Messages</li>
+            <li class="music-item">Modern Feelings</li>
+            <li class="music-item">Modest Brass</li>
+            <li class="music-item">Moonbeam</li>
+            <li class="music-item">Nebulous</li>
+            <li class="music-item">Neuro Ninja</li>
+            <li class="music-item">Night Circuit</li>
+            <li class="music-item">Night Mood</li>
+            <li class="music-item">Night Shift</li>
+            <li class="music-item">Oceanic</li>
+            <li class="music-item">Oddity</li>
+            <li class="music-item">Odysseus</li>
+            <li class="music-item">Offshore</li>
+            <li class="music-item">On The Grid</li>
+            <li class="music-item">One Last Look</li>
+            <li class="music-item">Overnight Workout</li>
+            <li class="music-item">Paralysis</li>
+            <li class="music-item">Perseverance</li>
+            <li class="music-item">Phrygian Sauce</li>
+            <li class="music-item">Pipe Dreams</li>
+            <li class="music-item">Pirate Radio</li>
+            <li class="music-item">Popped Tops</li>
+            <li class="music-item">Psyched Up</li>
+            <li class="music-item">Red Planet Ravers</li>
+            <li class="music-item">Reptilian</li>
+            <li class="music-item">Restless</li>
+            <li class="music-item">Rio Rhythms</li>
+            <li class="music-item">Robot Reverie</li>
+            <li class="music-item">Rumors</li>
+            <li class="music-item">Shadowed Oak</li>
+            <li class="music-item">Shimmer</li>
+            <li class="music-item">Shrouded</li>
+            <li class="music-item">Silvergrass</li>
+            <li class="music-item">Skullbreaker</li>
+            <li class="music-item">Sleepy Pop</li>
+            <li class="music-item">Snowbirds</li>
+            <li class="music-item">Soaked Circuits</li>
+            <li class="music-item">Soft Breeze</li>
+            <li class="music-item">Soft Touch</li>
+            <li class="music-item">Solitude</li>
+            <li class="music-item">Soul Pop</li>
+            <li class="music-item">Space Case</li>
+            <li class="music-item">Spider Bytes</li>
+            <li class="music-item">Stab in the Dark</li>
+            <li class="music-item">Stadium Stomp</li>
+            <li class="music-item">Stamina</li>
+            <li class="music-item">Staying Power</li>
+            <li class="music-item">Steel Jaws</li>
+            <li class="music-item">Straight Face</li>
+            <li class="music-item">Strobe Light Stalker</li>
+            <li class="music-item">Submerged</li>
+            <li class="music-item">Subsurface</li>
+            <li class="music-item">Sun In Your Eyes</li>
+            <li class="music-item">Sun Up</li>
+            <li class="music-item">Sunscreen</li>
+            <li class="music-item">Sweaty Pluck</li>
+            <li class="music-item">Sweet Talk</li>
+            <li class="music-item">Swift Fire</li>
+            <li class="music-item">Tar Melt</li>
+            <li class="music-item">Techno Tinge</li>
+            <li class="music-item">Thinking Out Loud</li>
+            <li class="music-item">Throw It Down</li>
+            <li class="music-item">Training Day</li>
+            <li class="music-item">Trance Hold</li>
+            <li class="music-item">Trapper Keeper</li>
+            <li class="music-item">Tricky Terrain</li>
+            <li class="music-item">Tropics Water</li>
+            <li class="music-item">Troublemaker</li>
+            <li class="music-item">Turning Heads</li>
+            <li class="music-item">Underground Saws</li>
+            <li class="music-item">Underground Upgrade</li>
+            <li class="music-item">Unfazed</li>
+            <li class="music-item">Veteran Flow</li>
+            <li class="music-item">Watch Yourself</li>
+            <li class="music-item">Whatcha Want</li>
+            <li class="music-item">What's Shakin'</li>
+            <li class="music-item">Who Needs Words</li>
+            <li class="music-item">Wiggle Wiggle</li>
+            <li class="music-item">Wired</li>
+            <li class="music-item">Within Range</li>
+            <li class="music-item">Wonderer</li>
+            <li class="music-item">Wreck the Floor</li>
+            <li class="music-item">Youngling</li>
+          </ul>
+        </div>
+        <div class="column" id="bbx">
+          <div class="column-header">
+            <h2>BBX Music Styles</h2>
+          </div>
+          <ul class="music-list">
+            <li class="music-item">Backpack Gladiators</li>
+            <li class="music-item">Bouncy House</li>
+            <li class="music-item">Breakneck</li>
+            <li class="music-item">Broken Breaks</li>
+            <li class="music-item">Caper</li>
+            <li class="music-item">Captured Traps</li>
+            <li class="music-item">Ejectified</li>
+            <li class="music-item">Foreign Tongue</li>
+            <li class="music-item">Grind Radio</li>
+            <li class="music-item">Groove Palette</li>
+            <li class="music-item">Hardhead</li>
+            <li class="music-item">Hastened Pace</li>
+            <li class="music-item">Haunters Box</li>
+            <li class="music-item">Human FX</li>
+            <li class="music-item">Hyperspeed</li>
+            <li class="music-item">Jaw Jackin'</li>
+            <li class="music-item">Juice Box</li>
+            <li class="music-item">Live and Direct</li>
+            <li class="music-item">Mecha Battle</li>
+            <li class="music-item">Mr. Midtempo</li>
+            <li class="music-item">Perfect Fit</li>
+            <li class="music-item">Perforate</li>
+            <li class="music-item">Prime Upshot</li>
+            <li class="music-item">Protean</li>
+            <li class="music-item">Rhythm Boxer</li>
+            <li class="music-item">Ricochet</li>
+            <li class="music-item">Rockin' With It</li>
+            <li class="music-item">Run in Place</li>
+            <li class="music-item">Slap Attack</li>
+            <li class="music-item">Space Boxer</li>
+            <li class="music-item">Spinnin' Sidewalks</li>
+            <li class="music-item">Spittin' Game</li>
+            <li class="music-item">Stagger</li>
+            <li class="music-item">Street Parade</li>
+            <li class="music-item">Through the Mud</li>
+            <li class="music-item">Top Air Tier</li>
+            <li class="music-item">Uncooked Groove</li>
+            <li class="music-item">Weird Creatures</li>
+          </ul>
+        </div>
+        <div class="column" id="bsl">
+          <div class="column-header">
+            <h2>BSL</h2>
+          </div>
+          <ul class="music-list">
+            <li class="music-item">Achilles</li>
+            <li class="music-item">Aluminium</li>
+            <li class="music-item">Amped Up</li>
+            <li class="music-item">Analog Fuzz Box</li>
+            <li class="music-item">Analogue Noir</li>
+            <li class="music-item">Anthem</li>
+            <li class="music-item">At the Disco</li>
+            <li class="music-item">Back and Forth</li>
+            <li class="music-item">Bad Mood</li>
+            <li class="music-item">Bass Flux</li>
+            <li class="music-item">Beastly Beauty</li>
+            <li class="music-item">Big and Bouncy</li>
+            <li class="music-item">Bitter Pill</li>
+            <li class="music-item">Black Swan</li>
+            <li class="music-item">Blackout</li>
+            <li class="music-item">Body Twist</li>
+            <li class="music-item">Boss Bass</li>
+            <li class="music-item">Broken Bass</li>
+            <li class="music-item">Buzzy French Guys</li>
+            <li class="music-item">Chameleon Bass</li>
+            <li class="music-item">Chimera Sub</li>
+            <li class="music-item">Circle Percs</li>
+            <li class="music-item">Classic Lows</li>
+            <li class="music-item">Contemplation Bass</li>
+            <li class="music-item">Cooking with Vinyl</li>
+            <li class="music-item">Daemon</li>
+            <li class="music-item">Dark Rider</li>
+            <li class="music-item">Dark Titan</li>
+            <li class="music-item">Dark Zeitgeist</li>
+            <li class="music-item">Day Dreamer</li>
+            <li class="music-item">Debonair</li>
+            <li class="music-item">Deep Dive</li>
+            <li class="music-item">Diabolical</li>
+            <li class="music-item">Dubious Skank</li>
+            <li class="music-item">Electric Hollow</li>
+            <li class="music-item">Filthy Funk</li>
+            <li class="music-item">Fretboard Champion</li>
+            <li class="music-item">Funk Foundation</li>
+            <li class="music-item">Funkit</li>
+            <li class="music-item">Funksploitation</li>
+            <li class="music-item">Funky Yazz Bass</li>
+            <li class="music-item">Fusion Point</li>
+            <li class="music-item">Fuzz Buzz</li>
+            <li class="music-item">Graphene</li>
+            <li class="music-item">Grey Day</li>
+            <li class="music-item">Groove Back</li>
+            <li class="music-item">Groove Salad</li>
+            <li class="music-item">Hard Trapper</li>
+            <li class="music-item">Hardcore Bass</li>
+            <li class="music-item">Harmonic Beauty</li>
+            <li class="music-item">Heavy-Handed</li>
+            <li class="music-item">Interior Breach</li>
+            <li class="music-item">Italo King</li>
+            <li class="music-item">Kingpin</li>
+            <li class="music-item">Kingston</li>
+            <li class="music-item">LA Funk Club</li>
+            <li class="music-item">Lovely Curves</li>
+            <li class="music-item">Low and Behold</li>
+            <li class="music-item">Low and Rolling</li>
+            <li class="music-item">Mastermind</li>
+            <li class="music-item">Melodically Aligned</li>
+            <li class="music-item">Mercury Sub</li>
+            <li class="music-item">New Horizon</li>
+            <li class="music-item">Night Tripper</li>
+            <li class="music-item">Outta Sight</li>
+            <li class="music-item">Paragon</li>
+            <li class="music-item">Persistence</li>
+            <li class="music-item">Phantom</li>
+            <li class="music-item">Progmatic</li>
+            <li class="music-item">Quack Factory</li>
+            <li class="music-item">Rastahh</li>
+            <li class="music-item">Retro Cafe</li>
+            <li class="music-item">Robotique</li>
+            <li class="music-item">Rolling Robo</li>
+            <li class="music-item">RubbaDub</li>
+            <li class="music-item">Silkscreen</li>
+            <li class="music-item">Simple Nature</li>
+            <li class="music-item">Slappin' n' Walkin'</li>
+            <li class="music-item">Slick Surface</li>
+            <li class="music-item">Smear Campaign</li>
+            <li class="music-item">Smokeshow</li>
+            <li class="music-item">Smooth Operator</li>
+            <li class="music-item">Stealthy Agent</li>
+            <li class="music-item">Strike a Chord</li>
+            <li class="music-item">Sublimate</li>
+            <li class="music-item">Summit Sequences</li>
+            <li class="music-item">Sunset Overdrive</li>
+            <li class="music-item">Synth Running</li>
+            <li class="music-item">Synthpop Boss</li>
+            <li class="music-item">Tempted</li>
+            <li class="music-item">Tension</li>
+            <li class="music-item">Throat Punch</li>
+            <li class="music-item">Trap Attack</li>
+            <li class="music-item">Traveler</li>
+            <li class="music-item">Trenchtown</li>
+            <li class="music-item">Triple Threat</li>
+            <li class="music-item">Undercover</li>
+            <li class="music-item">Upright Citizen</li>
+            <li class="music-item">Vicious Trap</li>
+            <li class="music-item">Walkabout</li>
+            <li class="music-item">Walking Upright</li>
+          </ul>
+        </div>
+        <div class="column" id="bte">
+          <div class="column-header">
+            <h2>BTE</h2>
+          </div>
+          <ul class="music-list">
+            <li class="music-item">4am Workout</li>
+            <li class="music-item">After Dark Sounds</li>
+            <li class="music-item">Alien Elements</li>
+            <li class="music-item">Analog Basement</li>
+            <li class="music-item">Analog Deep</li>
+            <li class="music-item">Apollo Drums</li>
+            <li class="music-item">Astral Field</li>
+            <li class="music-item">Attitude</li>
+            <li class="music-item">Basement Vibes Kit</li>
+            <li class="music-item">Beat Box Hero</li>
+            <li class="music-item">Beat Box Villain</li>
+            <li class="music-item">Bewildered</li>
+            <li class="music-item">Big Swing</li>
+            <li class="music-item">Big Trap Elements</li>
+            <li class="music-item">Blacktop</li>
+            <li class="music-item">Blast</li>
+            <li class="music-item">Block Drums</li>
+            <li class="music-item">Bounce Up</li>
+            <li class="music-item">Bring Something</li>
+            <li class="music-item">Busy Body</li>
+            <li class="music-item">Capricious Drums</li>
+            <li class="music-item">Capsules</li>
+            <li class="music-item">Capt'n Turnt</li>
+            <li class="music-item">Chameleon</li>
+            <li class="music-item">Champ Drums</li>
+            <li class="music-item">Chemical Reaction</li>
+            <li class="music-item">Chill Electronic Groove</li>
+            <li class="music-item">Clangorous Elements</li>
+            <li class="music-item">Clean Escape</li>
+            <li class="music-item">Clingy Drums</li>
+            <li class="music-item">Clunk & Clang</li>
+            <li class="music-item">Clunk and Clang</li>
+            <li class="music-item">Color Drums</li>
+            <li class="music-item">Connections</li>
+            <li class="music-item">Cut to the Chase</li>
+            <li class="music-item">Cyborg Elements</li>
+            <li class="music-item">Dark Beach</li>
+            <li class="music-item">Darkened</li>
+            <li class="music-item">Deflect</li>
+            <li class="music-item">Deliberate</li>
+            <li class="music-item">Delly Streets</li>
+            <li class="music-item">Designer Stank</li>
+            <li class="music-item">Detroit Dry</li>
+            <li class="music-item">Digging</li>
+            <li class="music-item">Distorted Tapes</li>
+            <li class="music-item">Doubled Rings</li>
+            <li class="music-item">Drops Attack</li>
+            <li class="music-item">Drum Nurse Grooves</li>
+            <li class="music-item">Ego Rations</li>
+            <li class="music-item">Electro Ballad</li>
+            <li class="music-item">Electro Jamaica</li>
+            <li class="music-item">Escapade</li>
+            <li class="music-item">Fast Trap Elements</li>
+            <li class="music-item">Feel Good Elements</li>
+            <li class="music-item">Filthy Machine</li>
+            <li class="music-item">Fire Foundation</li>
+            <li class="music-item">Fluid Future</li>
+            <li class="music-item">Fluid Garage Drums</li>
+            <li class="music-item">Flutter Drums</li>
+            <li class="music-item">Fly Guys</li>
+            <li class="music-item">Foam Drums</li>
+            <li class="music-item">Fraction Drums</li>
+            <li class="music-item">Fried Waffle</li>
+            <li class="music-item">Frigid</li>
+            <li class="music-item">Generator</li>
+            <li class="music-item">Glacier Drums</li>
+            <li class="music-item">Gleaming the Cube</li>
+            <li class="music-item">Golden Electro</li>
+            <li class="music-item">Gorilla</li>
+            <li class="music-item">Grits and Bacon</li>
+            <li class="music-item">Hard Party</li>
+            <li class="music-item">Head Hitters</li>
+            <li class="music-item">Heat</li>
+            <li class="music-item">Heavy Nights</li>
+            <li class="music-item">Hexagon Drums</li>
+            <li class="music-item">Hexpad</li>
+            <li class="music-item">Hidden Vox Drums</li>
+            <li class="music-item">Hieroglyphics</li>
+            <li class="music-item">Hip Hop Jazz</li>
+            <li class="music-item">Hip Jazz</li>
+            <li class="music-item">Hop Jazz</li>
+            <li class="music-item">Humbo Beats</li>
+            <li class="music-item">Hybrid Beast</li>
+            <li class="music-item">Hyped Up</li>
+            <li class="music-item">Hyper Dust</li>
+            <li class="music-item">In Your Shoes</li>
+            <li class="music-item">Industrial Flex Drums</li>
+            <li class="music-item">Instructions</li>
+            <li class="music-item">Jersey Beach</li>
+            <li class="music-item">Jumbo Beats</li>
+            <li class="music-item">Karma Drums</li>
+            <li class="music-item">Kinetic</li>
+            <li class="music-item">King Drums</li>
+            <li class="music-item">LAX to Pearson</li>
+            <li class="music-item">Let's Move</li>
+            <li class="music-item">Light Trails</li>
+            <li class="music-item">Lighter Fluid Drums</li>
+            <li class="music-item">Lofi Bit Drums</li>
+            <li class="music-item">Longview</li>
+            <li class="music-item">Loose Change</li>
+            <li class="music-item">Matinee</li>
+            <li class="music-item">Mean Streak</li>
+            <li class="music-item">Mega Drums</li>
+            <li class="music-item">Melbourne Elements</li>
+            <li class="music-item">Midas Touch</li>
+            <li class="music-item">Moombah Tech Drums</li>
+            <li class="music-item">Motherland Drums</li>
+            <li class="music-item">New Shoes</li>
+            <li class="music-item">Night in Toronto</li>
+            <li class="music-item">Penthouse Drums</li>
+            <li class="music-item">Pop Junkie</li>
+            <li class="music-item">Pressure Mold</li>
+            <li class="music-item">Pummeling Shuffle</li>
+            <li class="music-item">Pumped Air</li>
+            <li class="music-item">Pureness</li>
+            <li class="music-item">Pushing Rocks Drums</li>
+            <li class="music-item">Reposition</li>
+            <li class="music-item">R'n'Breakfast</li>
+            <li class="music-item">Robo Elements</li>
+            <li class="music-item">Roni Rocks</li>
+            <li class="music-item">Runner Drums</li>
+            <li class="music-item">Running Lines</li>
+            <li class="music-item">Salted Drums</li>
+            <li class="music-item">Sasquatch Drums</li>
+            <li class="music-item">Scullery</li>
+            <li class="music-item">Shuri Is Chill</li>
+            <li class="music-item">Side Eye</li>
+            <li class="music-item">Simple Backbeat</li>
+            <li class="music-item">Slinky Elements</li>
+            <li class="music-item">Slow Funk</li>
+            <li class="music-item">Soul Sticks</li>
+            <li class="music-item">Spores</li>
+            <li class="music-item">Standard Actions</li>
+            <li class="music-item">Standoff</li>
+            <li class="music-item">Steady Hand</li>
+            <li class="music-item">Storm Incoming</li>
+            <li class="music-item">Sunset Rides</li>
+            <li class="music-item">Swing Steps</li>
+            <li class="music-item">Tawdry Drums</li>
+            <li class="music-item">Traffic Jam</li>
+            <li class="music-item">Tweeter Drums</li>
+            <li class="music-item">Vision Breaks</li>
+            <li class="music-item">Walls and Floors</li>
+            <li class="music-item">Wanderlust</li>
+            <li class="music-item">Whiskey Quick</li>
+            <li class="music-item">Wires on Wires</li>
+            <li class="music-item">Y2K</li>
+            <li class="music-item">Yellow Caps</li>
+          </ul>
+        </div>
+        <div class="column" id="chp">
+          <div class="column-header">
+            <h2>CHP</h2>
+          </div>
+          <ul class="music-list">
+            <li class="music-item">After the Rain</li>
+            <li class="music-item">AI Romance</li>
+            <li class="music-item">Allure</li>
+            <li class="music-item">Almost There</li>
+            <li class="music-item">Arp Wonder</li>
+            <li class="music-item">Avant-Garde Parisian</li>
+            <li class="music-item">Better Days</li>
+            <li class="music-item">Black Rain</li>
+            <li class="music-item">Bloomy Guitar</li>
+            <li class="music-item">Bossa Nocturne</li>
+            <li class="music-item">Branci Guitar</li>
+            <li class="music-item">Breaking Up</li>
+            <li class="music-item">Butterflies</li>
+            <li class="music-item">Carousel</li>
+            <li class="music-item">Catch the Spirit</li>
+            <li class="music-item">Chic Horns</li>
+            <li class="music-item">Chill Bossa</li>
+            <li class="music-item">Cool Wind</li>
+            <li class="music-item">Countdown</li>
+            <li class="music-item">Cozy Piano</li>
+            <li class="music-item">Crazy Synth</li>
+            <li class="music-item">Dark Piano</li>
+            <li class="music-item">Diamonds Forever</li>
+            <li class="music-item">Digital Earth</li>
+            <li class="music-item">Dirty Clouds</li>
+            <li class="music-item">Dirty Hands</li>
+            <li class="music-item">Dissolved</li>
+            <li class="music-item">Documentary</li>
+            <li class="music-item">Double 8</li>
+            <li class="music-item">Dramatic Classical Piano</li>
+            <li class="music-item">Dream All Night</li>
+            <li class="music-item">Dreamy Guitar</li>
+            <li class="music-item">Dusty Player</li>
+            <li class="music-item">Early Bird</li>
+            <li class="music-item">El MOB Guitar</li>
+            <li class="music-item">Emotions</li>
+            <li class="music-item">Empty Theatre</li>
+            <li class="music-item">Empyrean Vibes</li>
+            <li class="music-item">Epic Piano</li>
+            <li class="music-item">Esoteric Magic</li>
+            <li class="music-item">Fat and Sexy Sax</li>
+            <li class="music-item">Finally</li>
+            <li class="music-item">Fireside Piano</li>
+            <li class="music-item">Flavor Enhancer</li>
+            <li class="music-item">Fleur</li>
+            <li class="music-item">Foolish</li>
+            <li class="music-item">Fortitude</li>
+            <li class="music-item">Fragmentations</li>
+            <li class="music-item">Fully Realized</li>
+            <li class="music-item">Funky Horns</li>
+            <li class="music-item">Gatsby Piano</li>
+            <li class="music-item">Get Engaged</li>
+            <li class="music-item">Get Up</li>
+            <li class="music-item">Giant Keyboard</li>
+            <li class="music-item">Give Life</li>
+            <li class="music-item">Glow Worm</li>
+            <li class="music-item">Golden Moments</li>
+            <li class="music-item">Good Company</li>
+            <li class="music-item">Gospel Truth</li>
+            <li class="music-item">Greedy P</li>
+            <li class="music-item">Groovy Piano</li>
+            <li class="music-item">Guitar Dreams</li>
+            <li class="music-item">Guitar Float</li>
+            <li class="music-item">Guitar Flowers</li>
+            <li class="music-item">Hakuna Matata</li>
+            <li class="music-item">Happy Horns</li>
+            <li class="music-item">Happy Piano</li>
+            <li class="music-item">Heal Yourself</li>
+            <li class="music-item">Hope Street</li>
+            <li class="music-item">Hot City</li>
+            <li class="music-item">Hotline Keys</li>
+            <li class="music-item">Impressionist Haze</li>
+            <li class="music-item">Indie Passion</li>
+            <li class="music-item">Island Guitar</li>
+            <li class="music-item">Jazzy Dreamer</li>
+            <li class="music-item">Keep On</li>
+            <li class="music-item">Landing</li>
+            <li class="music-item">Late Afternoon</li>
+            <li class="music-item">Lazy Fingers</li>
+            <li class="music-item">Lazy Sunday</li>
+            <li class="music-item">Lessons Learned</li>
+            <li class="music-item">Levity</li>
+            <li class="music-item">Lightdance</li>
+            <li class="music-item">Lightly Toasted</li>
+            <li class="music-item">Little Friend</li>
+            <li class="music-item">Lovely Pop</li>
+            <li class="music-item">Lullaby</li>
+            <li class="music-item">Lunar Dreams</li>
+            <li class="music-item">Luxurious Keys</li>
+            <li class="music-item">Making Magic</li>
+            <li class="music-item">Megastar</li>
+            <li class="music-item">Melancholia</li>
+            <li class="music-item">Mellow Fragments</li>
+            <li class="music-item">Mellow Times</li>
+            <li class="music-item">Mellowed Out</li>
+            <li class="music-item">Memory Lane</li>
+            <li class="music-item">Mildly Fried</li>
+            <li class="music-item">Modern Classic</li>
+            <li class="music-item">Mood Noir</li>
+            <li class="music-item">Morning in Rio</li>
+            <li class="music-item">Moving Piano</li>
+            <li class="music-item">My Calculations</li>
+            <li class="music-item">Natural Crunch</li>
+            <li class="music-item">Neo Soul Keys</li>
+            <li class="music-item">New Places</li>
+            <li class="music-item">Night Detective</li>
+            <li class="music-item">Night Drive</li>
+            <li class="music-item">Nimble Brass</li>
+            <li class="music-item">Old and Beautiful</li>
+            <li class="music-item">Optimistic Future</li>
+            <li class="music-item">Over the Valley</li>
+            <li class="music-item">Pacified</li>
+            <li class="music-item">Packin' Sax</li>
+            <li class="music-item">Penny Pinch</li>
+            <li class="music-item">Phillip Sax</li>
+            <li class="music-item">Piano Stardust</li>
+            <li class="music-item">Piano Starlight</li>
+            <li class="music-item">Pinky Guitar</li>
+            <li class="music-item">Play Me Off</li>
+            <li class="music-item">Podcast Theme</li>
+            <li class="music-item">Policeman</li>
+            <li class="music-item">Poppy Hope</li>
+            <li class="music-item">Positive Pop</li>
+            <li class="music-item">Power Ballad</li>
+            <li class="music-item">Praise Be</li>
+            <li class="music-item">Psychic Serenade</li>
+            <li class="music-item">Radiant Keyboard</li>
+            <li class="music-item">Realization</li>
+            <li class="music-item">Retro Passion</li>
+            <li class="music-item">Reverie</li>
+            <li class="music-item">Rhythm and Chime</li>
+            <li class="music-item">Royal Wind</li>
+            <li class="music-item">Sad and Slow</li>
+            <li class="music-item">Sad Sonata</li>
+            <li class="music-item">Sentimental</li>
+            <li class="music-item">Serenade</li>
+            <li class="music-item">Simply Jazz</li>
+            <li class="music-item">Sincerely</li>
+            <li class="music-item">Skyline at Night</li>
+            <li class="music-item">Smooth Spice</li>
+            <li class="music-item">Smooth</li>
+            <li class="music-item">Snowfall</li>
+            <li class="music-item">Soul Food</li>
+            <li class="music-item">Space Travel</li>
+            <li class="music-item">Spicy Moves</li>
+            <li class="music-item">Starry Guitar</li>
+            <li class="music-item">Story So Far</li>
+            <li class="music-item">Subdued</li>
+            <li class="music-item">Subway Night</li>
+            <li class="music-item">Sun-Kissed</li>
+            <li class="music-item">Sunrise Keys</li>
+            <li class="music-item">Supreme Tango</li>
+            <li class="music-item">Sustained Sleep</li>
+            <li class="music-item">Sweet Master Synth</li>
+            <li class="music-item">Sweet Sections</li>
+            <li class="music-item">Sweet Sensation</li>
+            <li class="music-item">The Long Wait</li>
+            <li class="music-item">The Underdog</li>
+            <li class="music-item">Thoughtful Tines</li>
+            <li class="music-item">Ultra Mellows</li>
+            <li class="music-item">Ups and Downs</li>
+            <li class="music-item">Variations</li>
+            <li class="music-item">Vast</li>
+            <li class="music-item">Velvet Ensemble</li>
+            <li class="music-item">Vossa Nova</li>
+            <li class="music-item">Waiting and Ready</li>
+            <li class="music-item">Walkdown Guitar</li>
+            <li class="music-item">Warm Glow</li>
+            <li class="music-item">Why Tones</li>
+            <li class="music-item">Winding Down</li>
+            <li class="music-item">Winter Keys</li>
+            <li class="music-item">Your Majesty</li>
+          </ul>
+        </div>
+        <div class="column" id="crt">
+          <div class="column-header">
+            <h2>CRT</h2>
+          </div>
+          <ul class="music-list">
+            <li class="music-item">A Fine Specimen</li>
+            <li class="music-item">Affective</li>
+            <li class="music-item">Airy Vibes</li>
+            <li class="music-item">Another Time</li>
+            <li class="music-item">Anvil Adams</li>
+            <li class="music-item">Apexian Blues</li>
+            <li class="music-item">Back Row</li>
+            <li class="music-item">Backwater Angels</li>
+            <li class="music-item">Balancing Act</li>
+            <li class="music-item">Baroque Vibe</li>
+            <li class="music-item">Binary Form</li>
+            <li class="music-item">Campana Sobre</li>
+            <li class="music-item">Concerto No 1</li>
+            <li class="music-item">Dead Serious</li>
+            <li class="music-item">Della Vespro</li>
+            <li class="music-item">Double Eagle</li>
+            <li class="music-item">Eggs & Rolls</li>
+            <li class="music-item">English Choir</li>
+            <li class="music-item">Eroica Symphony</li>
+            <li class="music-item">Flamenco Player</li>
+            <li class="music-item">Flat Concerto</li>
+            <li class="music-item">Flat Piano</li>
+            <li class="music-item">Flute & String</li>
+            <li class="music-item">French Poem</li>
+            <li class="music-item">Good News</li>
+            <li class="music-item">Grosso Allegro</li>
+            <li class="music-item">Hilo March</li>
+            <li class="music-item">Impression</li>
+            <li class="music-item">Kinderlein Kommet</li>
+            <li class="music-item">Kingdom</li>
+            <li class="music-item">La Vieja</li>
+            <li class="music-item">Lady of the Lake</li>
+            <li class="music-item">Lamenting</li>
+            <li class="music-item">Lento Sonata</li>
+            <li class="music-item">Limehouse</li>
+            <li class="music-item">Little Dance</li>
+            <li class="music-item">Magical Realms</li>
+            <li class="music-item">Magnifical</li>
+            <li class="music-item">Major Waves</li>
+            <li class="music-item">Mellow Promenade</li>
+            <li class="music-item">Messiah</li>
+            <li class="music-item">Military Step</li>
+            <li class="music-item">Mixed Choir</li>
+            <li class="music-item">Molto Partita</li>
+            <li class="music-item">Mrs. Brown</li>
+            <li class="music-item">My Troubles</li>
+            <li class="music-item">Nutcracker</li>
+            <li class="music-item">Poco Andante</li>
+            <li class="music-item">Poppy Up</li>
+            <li class="music-item">Porchfront Holiday</li>
+            <li class="music-item">Psalm 41</li>
+            <li class="music-item">Raindrops</li>
+            <li class="music-item">Raise a Ruckus</li>
+            <li class="music-item">Rambler</li>
+            <li class="music-item">Rest Ye</li>
+            <li class="music-item">Resurgence</li>
+            <li class="music-item">Serenade Klein</li>
+            <li class="music-item">Shattered</li>
+            <li class="music-item">She's My Dream</li>
+            <li class="music-item">Soft Section</li>
+            <li class="music-item">Soft Wave</li>
+            <li class="music-item">Splendid Affair</li>
+            <li class="music-item">St Louis Selection</li>
+            <li class="music-item">Stack Lord</li>
+            <li class="music-item">Sugar Bells</li>
+            <li class="music-item">Suite No 3</li>
+            <li class="music-item">Sweet Dreams</li>
+            <li class="music-item">Te Deum</li>
+            <li class="music-item">The Autograph</li>
+            <li class="music-item">Toccata Keys</li>
+            <li class="music-item">Toy Soldiers</li>
+            <li class="music-item">Twelve Days</li>
+            <li class="music-item">Vergine & Magnificate</li>
+            <li class="music-item">Violin Waves</li>
+            <li class="music-item">Virtuosic Chamber</li>
+            <li class="music-item">Well Wishes</li>
+            <li class="music-item">Were You There</li>
+            <li class="music-item">Ya Viene</li>
+            <li class="music-item">Your Entertainment</li>
+            <li class="music-item">Your Lips</li>
+          </ul>
+        </div>
+        <div class="column" id="dbk">
+          <div class="column-header">
+            <h2>DBK</h2>
+          </div>
+          <ul class="music-list">
+            <li class="music-item">Attack Mode</li>
+            <li class="music-item">Big Beat Heat</li>
+            <li class="music-item">Bite Your Tongue</li>
+            <li class="music-item">Boom Bap Beast</li>
+            <li class="music-item">Brawler</li>
+            <li class="music-item">Bread and Butter</li>
+            <li class="music-item">Caustic Chops</li>
+            <li class="music-item">Crawl Space</li>
+            <li class="music-item">Crimp</li>
+            <li class="music-item">Crunch Time</li>
+            <li class="music-item">Deep in the Brush</li>
+            <li class="music-item">Dusted Off</li>
+            <li class="music-item">Fat Cat</li>
+            <li class="music-item">Feelin It</li>
+            <li class="music-item">Funky Groove</li>
+            <li class="music-item">Goon</li>
+            <li class="music-item">Got the Shakes</li>
+            <li class="music-item">Gunner</li>
+            <li class="music-item">Hangback</li>
+            <li class="music-item">Hard Bounce</li>
+            <li class="music-item">Head Bobber</li>
+            <li class="music-item">Hefe</li>
+            <li class="music-item">Heyday</li>
+            <li class="music-item">Hidden Weapon</li>
+            <li class="music-item">Jawbreaker</li>
+            <li class="music-item">Juiced</li>
+            <li class="music-item">Keep It Chill</li>
+            <li class="music-item">Kickin It</li>
+            <li class="music-item">Made in Detroit</li>
+            <li class="music-item">Marble Brain</li>
+            <li class="music-item">Master Chef</li>
+            <li class="music-item">Midwest Mashup</li>
+            <li class="music-item">Mother City Grooves</li>
+            <li class="music-item">One Cool Customer</li>
+            <li class="music-item">Pillow Fight</li>
+            <li class="music-item">Recharged</li>
+            <li class="music-item">Relaxed</li>
+            <li class="music-item">Resting Break Face</li>
+            <li class="music-item">Ride the Rhythm</li>
+            <li class="music-item">Rolling Boulders</li>
+            <li class="music-item">Soulfully</li>
+            <li class="music-item">Speed Freak</li>
+            <li class="music-item">Stank Mode</li>
+            <li class="music-item">The Big One</li>
+            <li class="music-item">Thick Shuffle</li>
+            <li class="music-item">Tighten Up</li>
+            <li class="music-item">TKO</li>
+            <li class="music-item">Totally Thumped</li>
+            <li class="music-item">Turbo Groover</li>
+            <li class="music-item">Uppercut</li>
+          </ul>
+        </div>
+        <div class="column" id="dmc">
+          <div class="column-header">
+            <h2>DMC</h2>
+          </div>
+          <ul class="music-list">
+            <li class="music-item">22nd Century Rasta</li>
+            <li class="music-item">Acidic Grooves</li>
+            <li class="music-item">Advanced Tech</li>
+            <li class="music-item">Analog Army</li>
+            <li class="music-item">Bassbin Blowout</li>
+            <li class="music-item">Bellodrum</li>
+            <li class="music-item">Berliner</li>
+            <li class="music-item">Breathy Hollow</li>
+            <li class="music-item">Charging Up</li>
+            <li class="music-item">Cold Front</li>
+            <li class="music-item">Comin' in Hot</li>
+            <li class="music-item">Dark Doom</li>
+            <li class="music-item">Displaced Air</li>
+            <li class="music-item">Doom Machine</li>
+            <li class="music-item">Elephant Stomp</li>
+            <li class="music-item">Eternal Flow</li>
+            <li class="music-item">External Circuit</li>
+            <li class="music-item">Fight It Out</li>
+            <li class="music-item">Fleeting Thoughts</li>
+            <li class="music-item">Floaters</li>
+            <li class="music-item">Foreign Substance</li>
+            <li class="music-item">Fresh & Clean</li>
+            <li class="music-item">Glitch Tap</li>
+            <li class="music-item">Hammer Punch</li>
+            <li class="music-item">Heavy Stepper</li>
+            <li class="music-item">Hold It Down</li>
+            <li class="music-item">Hulking</li>
+            <li class="music-item">Immune</li>
+            <li class="music-item">Infrasonic Perc</li>
+            <li class="music-item">Insomnia</li>
+            <li class="music-item">Lethal Edge</li>
+            <li class="music-item">Live Wire</li>
+            <li class="music-item">Mecha Skanker</li>
+            <li class="music-item">Mini Bubble</li>
+            <li class="music-item">Moving Target</li>
+            <li class="music-item">Organ Beats</li>
+            <li class="music-item">Pressure Rising</li>
+            <li class="music-item">RIddim Dancehall</li>
+            <li class="music-item">Rigid Material</li>
+            <li class="music-item">Roller Rink Banger</li>
+            <li class="music-item">Room Rocker</li>
+            <li class="music-item">Sharpened Blade</li>
+            <li class="music-item">Sizzler</li>
+            <li class="music-item">Sketchy</li>
+            <li class="music-item">Slackster</li>
+            <li class="music-item">Sonic Boom</li>
+            <li class="music-item">Spin Cycle</li>
+            <li class="music-item">Springer</li>
+            <li class="music-item">Steady Pace</li>
+            <li class="music-item">Stealth Attack</li>
+            <li class="music-item">Strange Pulses</li>
+            <li class="music-item">Suave Demeanor</li>
+            <li class="music-item">Sub System</li>
+            <li class="music-item">Surgical Strikes</li>
+            <li class="music-item">Synchronize</li>
+            <li class="music-item">Visceral</li>
+            <li class="music-item">Warehouse Warriors</li>
+            <li class="music-item">Whipped Up</li>
+            <li class="music-item">Whistling Groove</li>
+            <li class="music-item">Wilderness</li>
+            <li class="music-item">Word on the Street</li>
+          </ul>
+        </div>
+        <div class="column" id="drp">
+          <div class="column-header">
+            <h2>DRP</h2>
+          </div>
+          <ul class="music-list">
+            <li class="music-item">Acid Keys</li>
+            <li class="music-item">Altitude</li>
+            <li class="music-item">Astral Type Pad</li>
+            <li class="music-item">Auxiliary Fire</li>
+            <li class="music-item">Azure</li>
+            <li class="music-item">Bad Temper</li>
+            <li class="music-item">Ballistic</li>
+            <li class="music-item">Believe Me</li>
+            <li class="music-item">Big Dreams</li>
+            <li class="music-item">Bot Trolls</li>
+            <li class="music-item">Bottle Service</li>
+            <li class="music-item">Bravado</li>
+            <li class="music-item">Brazen Keys</li>
+            <li class="music-item">Bucket Knocks</li>
+            <li class="music-item">Building Blocks</li>
+            <li class="music-item">Celestial Vibes</li>
+            <li class="music-item">Chomped</li>
+            <li class="music-item">Clear Path</li>
+            <li class="music-item">Club Shake</li>
+            <li class="music-item">Connected</li>
+            <li class="music-item">Construction King</li>
+            <li class="music-item">Critical</li>
+            <li class="music-item">Curious</li>
+            <li class="music-item">Dark Secret</li>
+            <li class="music-item">Double Dip</li>
+            <li class="music-item">Downtown Dojo</li>
+            <li class="music-item">Drowsy Flute</li>
+            <li class="music-item">Dusty Flute</li>
+            <li class="music-item">Elegance</li>
+            <li class="music-item">Endless Night</li>
+            <li class="music-item">Final Hour</li>
+            <li class="music-item">Freak Mode</li>
+            <li class="music-item">Freeze It</li>
+            <li class="music-item">Gameface Bass</li>
+            <li class="music-item">Give the Signal</li>
+            <li class="music-item">Glassy Pluck</li>
+            <li class="music-item">Golden Age</li>
+            <li class="music-item">Hammer It Home</li>
+            <li class="music-item">Head in the Clouds</li>
+            <li class="music-item">Heist Bell</li>
+            <li class="music-item">Inner Mind</li>
+            <li class="music-item">Insidious</li>
+            <li class="music-item">Lay Low</li>
+            <li class="music-item">Left Hand Jab</li>
+            <li class="music-item">Litewave</li>
+            <li class="music-item">Live and Learn</li>
+            <li class="music-item">Lofi Pressure</li>
+            <li class="music-item">Lovers Lab</li>
+            <li class="music-item">Luxury Suite</li>
+            <li class="music-item">Make It Work</li>
+            <li class="music-item">More Flute</li>
+            <li class="music-item">Mountain Palace</li>
+            <li class="music-item">New Chapter</li>
+            <li class="music-item">New Classic</li>
+            <li class="music-item">Nighttime Piano</li>
+            <li class="music-item">On the Grind</li>
+            <li class="music-item">Organic Approach</li>
+            <li class="music-item">Plug Pluck</li>
+            <li class="music-item">Pocket Pusher</li>
+            <li class="music-item">Posted Up</li>
+            <li class="music-item">Puzzle Pieces</li>
+            <li class="music-item">Recluse Anthem</li>
+            <li class="music-item">Royalty</li>
+            <li class="music-item">Rubber Bands</li>
+            <li class="music-item">Sample Type Beat</li>
+            <li class="music-item">Sedan Glide</li>
+            <li class="music-item">Serious Business</li>
+            <li class="music-item">Shadow Flute</li>
+            <li class="music-item">Shady Deal</li>
+            <li class="music-item">Slapback</li>
+            <li class="music-item">Sophisticated Affair</li>
+            <li class="music-item">Southside Breeze</li>
+            <li class="music-item">Space Cash</li>
+            <li class="music-item">Spades</li>
+            <li class="music-item">Sticky Xylo</li>
+            <li class="music-item">Sub King</li>
+            <li class="music-item">Supreme</li>
+            <li class="music-item">Those Days</li>
+            <li class="music-item">Threadbare</li>
+            <li class="music-item">Top Shotta</li>
+            <li class="music-item">Trap Science</li>
+            <li class="music-item">Trill Flute</li>
+            <li class="music-item">Trippy Flute</li>
+            <li class="music-item">Trunk Rattler</li>
+            <li class="music-item">Watch Your Step</li>
+          </ul>
+        </div>
+        <div class="column" id="dsh">
+          <div class="column-header">
+            <h2>DSH</h2>
+          </div>
+          <ul class="music-list">
+            <li class="music-item">Adrenaline</li>
+            <li class="music-item">Attitude TIght Kit Funk</li>
+            <li class="music-item">Bare Knuckle</li>
+            <li class="music-item">Basement Disco</li>
+            <li class="music-item">Big Ben</li>
+            <li class="music-item">Big hall Driving Rock</li>
+            <li class="music-item">Big Hall Fat Grooves</li>
+            <li class="music-item">Big Hall Fat Shuffle</li>
+            <li class="music-item">Big Hall Hard Rock</li>
+            <li class="music-item">BIg Hall Hip Hop Vibes</li>
+            <li class="music-item">Big Hall Hip Hop</li>
+            <li class="music-item">Big Hall Huge Drums</li>
+            <li class="music-item">Big Hall Laid Back</li>
+            <li class="music-item">Big Hall Rock Shuffle</li>
+            <li class="music-item">Big Hall Sexy Shuffle</li>
+            <li class="music-item">Big Hall Shuffle</li>
+            <li class="music-item">Big Hall Simple Hip Hop</li>
+            <li class="music-item">Big Hall Simple Rock</li>
+            <li class="music-item">Big Hall Simple</li>
+            <li class="music-item">Big Hall Stone Shuffle</li>
+            <li class="music-item">Big Mood</li>
+            <li class="music-item">Bouncing Jazz</li>
+            <li class="music-item">Break Loose</li>
+            <li class="music-item">Breathy Jazz</li>
+            <li class="music-item">Bruno</li>
+            <li class="music-item">Bump 'n' Groove</li>
+            <li class="music-item">Busy Hip Hop Grooves</li>
+            <li class="music-item">Chic</li>
+            <li class="music-item">Clockwork</li>
+            <li class="music-item">Compound</li>
+            <li class="music-item">Crunch O'Clock</li>
+            <li class="music-item">Crunch</li>
+            <li class="music-item">Cymbals Galore</li>
+            <li class="music-item">Dingbat</li>
+            <li class="music-item">Dirty Dance Hall</li>
+            <li class="music-item">Disco on the Hat</li>
+            <li class="music-item">Excited Jazz</li>
+            <li class="music-item">Expressive Jazz</li>
+            <li class="music-item">Fnk Soul Bruv'a</li>
+            <li class="music-item">Free Thinker</li>
+            <li class="music-item">Future Jock Rock</li>
+            <li class="music-item">Gimme Five</li>
+            <li class="music-item">Going Nuclear</li>
+            <li class="music-item">Headed Downtown</li>
+            <li class="music-item">Hip Hop Big Grooves</li>
+            <li class="music-item">Hip Hop Grooves</li>
+            <li class="music-item">Hip Hop Kit Crunchy</li>
+            <li class="music-item">Hip Hop Kit Uptempo</li>
+            <li class="music-item">Hip Hop Light Grooves</li>
+            <li class="music-item">Hip Hop Vinyl Grooves</li>
+            <li class="music-item">Hipster</li>
+            <li class="music-item">Hostile</li>
+            <li class="music-item">Hypersonic</li>
+            <li class="music-item">Indie 808</li>
+            <li class="music-item">Indie Cheese Heads</li>
+            <li class="music-item">Indie Cruiser</li>
+            <li class="music-item">Indie Drive</li>
+            <li class="music-item">Indie Electro Sticks</li>
+            <li class="music-item">Indie Fire</li>
+            <li class="music-item">Indie Go Lucky</li>
+            <li class="music-item">Indie Overdrive</li>
+            <li class="music-item">Indie Psychedelic</li>
+            <li class="music-item">Indie Spaceship</li>
+            <li class="music-item">Jammer</li>
+            <li class="music-item">Jubilant Alt Rock</li>
+            <li class="music-item">Knock You Out</li>
+            <li class="music-item">Let Loose</li>
+            <li class="music-item">Marchland</li>
+            <li class="music-item">Midrange Hero</li>
+            <li class="music-item">Moon Boots</li>
+            <li class="music-item">Move It Along</li>
+            <li class="music-item">Octopus Jazz</li>
+            <li class="music-item">Pitter Patter Jazz</li>
+            <li class="music-item">PM Rock</li>
+            <li class="music-item">Pop Bundle Sticks</li>
+            <li class="music-item">Pop Bundle Stix</li>
+            <li class="music-item">Pop Kit Backbeat</li>
+            <li class="music-item">Pop Kit Catchy Grooves</li>
+            <li class="music-item">Pop Kit Low Grooves</li>
+            <li class="music-item">Pop Kit Phat Grooves</li>
+            <li class="music-item">Pop Kit Punchy Grooves</li>
+            <li class="music-item">Pop Kit SImple Grooves</li>
+            <li class="music-item">Powerhouse Alt Rock</li>
+            <li class="music-item">Preach</li>
+            <li class="music-item">Punched Out</li>
+            <li class="music-item">Pure Luck</li>
+            <li class="music-item">Ragtime</li>
+            <li class="music-item">Rattled</li>
+            <li class="music-item">Relentless</li>
+            <li class="music-item">Retro Stomp</li>
+            <li class="music-item">Rock Shaker Stone</li>
+            <li class="music-item">Rock with Purpose</li>
+            <li class="music-item">Rockafella</li>
+            <li class="music-item">Rollin' Through</li>
+            <li class="music-item">Roomy Energy Alt Rock</li>
+            <li class="music-item">Roomy Kit Alt Rock Grooves</li>
+            <li class="music-item">Roomy Peppy Kit</li>
+            <li class="music-item">Roomy Simple Grooves</li>
+            <li class="music-item">Run the Grime</li>
+            <li class="music-item">Scurrying Jazz</li>
+            <li class="music-item">Sentimental Slam</li>
+            <li class="music-item">Shuffling to Victory</li>
+            <li class="music-item">Simple Pop Kit Cali</li>
+            <li class="music-item">Simple Pop Kit Clean</li>
+            <li class="music-item">Snappy R&B Grooves</li>
+            <li class="music-item">Soul Soup</li>
+            <li class="music-item">Space Pop</li>
+            <li class="music-item">Spangled</li>
+            <li class="music-item">Speed Racer Indie</li>
+            <li class="music-item">Stomp</li>
+            <li class="music-item">Storm the Gates</li>
+            <li class="music-item">Straight Laces</li>
+            <li class="music-item">Subtle Jazz Swing</li>
+            <li class="music-item">Swung and Straight</li>
+            <li class="music-item">Syncopated Rock</li>
+            <li class="music-item">Tactile</li>
+            <li class="music-item">Teeter Totter Jazz</li>
+            <li class="music-item">The Indie Phase</li>
+            <li class="music-item">Thick Sixes</li>
+            <li class="music-item">Thick Skin</li>
+            <li class="music-item">Tight Funk Grooves</li>
+            <li class="music-item">Tight Kit Funk Complex</li>
+            <li class="music-item">TIght Kit Funk Crunchy</li>
+            <li class="music-item">Tight Kit Rumbles</li>
+            <li class="music-item">TIght Kit Steady Funk</li>
+            <li class="music-item">TIght Punch</li>
+            <li class="music-item">Tight R&B Grooves</li>
+            <li class="music-item">Tight Spot Crunch</li>
+            <li class="music-item">Tight Toms</li>
+            <li class="music-item">Tough Break</li>
+            <li class="music-item">Triangulate</li>
+            <li class="music-item">Trojan</li>
+            <li class="music-item">Vintage Blues Jam</li>
+            <li class="music-item">Vintage Electropop</li>
+            <li class="music-item">Vintage Kit Slick Indie</li>
+            <li class="music-item">Vintage Radio Hits</li>
+            <li class="music-item">Vintage Rock Grooves</li>
+            <li class="music-item">Vintage Throwback</li>
+          </ul>
+        </div>
+        <div class="column" id="dtv">
+          <div class="column-header">
+            <h2>DTV</h2>
+          </div>
+          <ul class="music-list">
+            <li class="music-item">Adoration</li>
+            <li class="music-item">Ancient Message</li>
+            <li class="music-item">Angel Breath</li>
+            <li class="music-item">Ascending</li>
+            <li class="music-item">Captivation</li>
+            <li class="music-item">Celestial Chants</li>
+            <li class="music-item">Chronicle</li>
+            <li class="music-item">Clear Headed</li>
+            <li class="music-item">Cloudless</li>
+            <li class="music-item">Come to Peace</li>
+            <li class="music-item">Communion</li>
+            <li class="music-item">Confide</li>
+            <li class="music-item">Constellations</li>
+            <li class="music-item">Darkness Inside</li>
+            <li class="music-item">Devotion</li>
+            <li class="music-item">Epiphanies</li>
+            <li class="music-item">Eternity</li>
+            <li class="music-item">Feeling Good</li>
+            <li class="music-item">Fervor</li>
+            <li class="music-item">Filtered Soul</li>
+            <li class="music-item">Forevermore</li>
+            <li class="music-item">From The Skies</li>
+            <li class="music-item">Golden Spaces</li>
+            <li class="music-item">Haunting Petals</li>
+            <li class="music-item">Heavenly</li>
+            <li class="music-item">Holy Divine</li>
+            <li class="music-item">Insurrection</li>
+            <li class="music-item">Letting Go</li>
+            <li class="music-item">Light of Heart</li>
+            <li class="music-item">Love Spell</li>
+            <li class="music-item">Lucidity</li>
+            <li class="music-item">Mirrors</li>
+            <li class="music-item">Mists Of Time</li>
+            <li class="music-item">Mystify</li>
+            <li class="music-item">Perfect Form</li>
+            <li class="music-item">Purity</li>
+            <li class="music-item">Red Lotus</li>
+            <li class="music-item">Revelation</li>
+            <li class="music-item">Seance</li>
+            <li class="music-item">Seigaku</li>
+            <li class="music-item">Shadowdance</li>
+            <li class="music-item">Sirens Call</li>
+            <li class="music-item">Skeptical</li>
+            <li class="music-item">Slow Current</li>
+            <li class="music-item">Spectral</li>
+            <li class="music-item">Sultry Whispers</li>
+            <li class="music-item">Sunward</li>
+            <li class="music-item">Tale of the Oracle</li>
+            <li class="music-item">The Temple</li>
+            <li class="music-item">Transformation</li>
+            <li class="music-item">Undulate</li>
+            <li class="music-item">Waking Dreams</li>
+            <li class="music-item">Windstorm</li>
+            <li class="music-item">Winter Sun</li>
+            <li class="music-item">Zenith Falls</li>
+          </ul>
+        </div>
+        <div class="column" id="exp">
+          <div class="column-header">
+            <h2>EXP</h2>
+          </div>
+          <ul class="music-list">
+            <li class="music-item">Around the House</li>
+            <li class="music-item">Aux Perc</li>
+            <li class="music-item">Back to the Roots</li>
+            <li class="music-item">Battle Ritual</li>
+            <li class="music-item">Beat Filler</li>
+            <li class="music-item">Beat Seasoning</li>
+            <li class="music-item">Bells & Whistles</li>
+            <li class="music-item">Bermuda</li>
+            <li class="music-item">Block Party</li>
+            <li class="music-item">Bongo Blitz</li>
+            <li class="music-item">Boxed Off</li>
+            <li class="music-item">Cajon People</li>
+            <li class="music-item">Cave Drums</li>
+            <li class="music-item">Cheech</li>
+            <li class="music-item">Chiller Tops</li>
+            <li class="music-item">Circle Percussion</li>
+            <li class="music-item">Conga Caravan</li>
+            <li class="music-item">Dr Woods</li>
+            <li class="music-item">Drum and Dance</li>
+            <li class="music-item">Drum Jam</li>
+            <li class="music-item">Drummin' for Change</li>
+            <li class="music-item">Eastern Rhythm Set</li>
+            <li class="music-item">Enchanted Sticks</li>
+            <li class="music-item">Funky Aux Perc</li>
+            <li class="music-item">Gated Drum Circle</li>
+            <li class="music-item">In Limbo</li>
+            <li class="music-item">Inanimate Objects</li>
+            <li class="music-item">Ipanema Groove</li>
+            <li class="music-item">Itchy Scratchy</li>
+            <li class="music-item">Jungle Rhythms</li>
+            <li class="music-item">LA Drum Circle</li>
+            <li class="music-item">Laid Back Small Perc</li>
+            <li class="music-item">Log Jamming</li>
+            <li class="music-item">Magic Shaker</li>
+            <li class="music-item">Martillo</li>
+            <li class="music-item">Natural Skins</li>
+            <li class="music-item">Offering</li>
+            <li class="music-item">Perc Militia</li>
+            <li class="music-item">Pick & Mix</li>
+            <li class="music-item">Pocket Grooves</li>
+            <li class="music-item">Polyrhythmic Echoes</li>
+            <li class="music-item">Rattlesnake</li>
+            <li class="music-item">Scratchy Dub</li>
+            <li class="music-item">Sha Shake</li>
+            <li class="music-item">Skin Strides</li>
+            <li class="music-item">Slappy Percs</li>
+            <li class="music-item">Snakehips</li>
+            <li class="music-item">Snap and Pop</li>
+            <li class="music-item">Tam</li>
+            <li class="music-item">Tamborine Machine</li>
+            <li class="music-item">Them Shaker Loops</li>
+            <li class="music-item">Ticky Rhythms</li>
+            <li class="music-item">Ticky Tacky</li>
+            <li class="music-item">Tippy Toes</li>
+            <li class="music-item">Tribal Filler</li>
+            <li class="music-item">Tuff Tambo</li>
+            <li class="music-item">Woody's Veggies</li>
+            <li class="music-item">Workshop Perc</li>
+            <li class="music-item">World Auxiliary</li>
+          </ul>
+        </div>
+        <div class="column" id="fbk">
+          <div class="column-header">
+            <h2>FBK</h2>
+          </div>
+          <ul class="music-list">
+            <li class="music-item">Air Crystals</li>
+            <li class="music-item">Airy Drones</li>
+            <li class="music-item">Arctic</li>
+            <li class="music-item">Astral Projection</li>
+            <li class="music-item">Billow</li>
+            <li class="music-item">Bleak Dawn</li>
+            <li class="music-item">Bleeding Leads</li>
+            <li class="music-item">Blurry Squeal</li>
+            <li class="music-item">Breezy Blessings</li>
+            <li class="music-item">Channelers</li>
+            <li class="music-item">Circuits in Space</li>
+            <li class="music-item">Cold Drone</li>
+            <li class="music-item">Computer Madness</li>
+            <li class="music-item">Cosmic Journey</li>
+            <li class="music-item">Departure</li>
+            <li class="music-item">Derecho</li>
+            <li class="music-item">Desperation Rings</li>
+            <li class="music-item">Digital Paradise</li>
+            <li class="music-item">Disorientation</li>
+            <li class="music-item">Doom Drones</li>
+            <li class="music-item">Doomer</li>
+            <li class="music-item">Dub Down Keys</li>
+            <li class="music-item">Dystopian Chrome</li>
+            <li class="music-item">Eternal Orbit</li>
+            <li class="music-item">Ethereal Pad</li>
+            <li class="music-item">Forester</li>
+            <li class="music-item">Fugue Cycle</li>
+            <li class="music-item">Future Chorale</li>
+            <li class="music-item">Ghost Street Cinema</li>
+            <li class="music-item">Glitch on Parade</li>
+            <li class="music-item">Gnome Drops</li>
+            <li class="music-item">Groundhog Day</li>
+            <li class="music-item">Grow</li>
+            <li class="music-item">Harmonication</li>
+            <li class="music-item">Hazy Sunset</li>
+            <li class="music-item">High Stains</li>
+            <li class="music-item">Hydroplane</li>
+            <li class="music-item">Inner Earth</li>
+            <li class="music-item">Late Night Rings</li>
+            <li class="music-item">Lead Lick Toolbox</li>
+            <li class="music-item">Loom</li>
+            <li class="music-item">Low Stains</li>
+            <li class="music-item">Map Change</li>
+            <li class="music-item">Metropolitan Forest</li>
+            <li class="music-item">Modular Tri</li>
+            <li class="music-item">Monk Mode</li>
+            <li class="music-item">Monkey Mind</li>
+            <li class="music-item">Mount Eerie</li>
+            <li class="music-item">Mutant Sniper</li>
+            <li class="music-item">Northern Lights</li>
+            <li class="music-item">Obscured</li>
+            <li class="music-item">On a Bender</li>
+            <li class="music-item">Overstretched</li>
+            <li class="music-item">Pachyderms</li>
+            <li class="music-item">Pitch Drop Tape</li>
+            <li class="music-item">Plucked Orb</li>
+            <li class="music-item">Rabbit Hole</li>
+            <li class="music-item">Resonant Glare</li>
+            <li class="music-item">ResoNation</li>
+            <li class="music-item">Revival</li>
+            <li class="music-item">Sea Train</li>
+            <li class="music-item">Serotonin Storm</li>
+            <li class="music-item">Smeared Wurli</li>
+            <li class="music-item">Soundcheck Strums</li>
+            <li class="music-item">Sunken Treasure</li>
+            <li class="music-item">Synthwave Rocketship</li>
+            <li class="music-item">Tape Feast</li>
+            <li class="music-item">Tape Feedback Swell</li>
+            <li class="music-item">Throttler</li>
+            <li class="music-item">Tinker</li>
+            <li class="music-item">Transhumanism</li>
+            <li class="music-item">Tube Amp Tricks</li>
+            <li class="music-item">Tunnel of Light</li>
+            <li class="music-item">Unruly Organ</li>
+            <li class="music-item">VHS Intro</li>
+            <li class="music-item">When the Smoke Clears</li>
+            <li class="music-item">Wonderland</li>
+          </ul>
+        </div>
+        <div class="column" id="fos">
+          <div class="column-header">
+            <h2>FOS</h2>
+          </div>
+          <ul class="music-list">
+            <li class="music-item">Aerial Mechanics</li>
+            <li class="music-item">Air Pipes</li>
+            <li class="music-item">Airs</li>
+            <li class="music-item">Apparatus</li>
+            <li class="music-item">Aquatics</li>
+            <li class="music-item">Artificial Intelligence</li>
+            <li class="music-item">Aviary</li>
+            <li class="music-item">Beehive</li>
+            <li class="music-item">Bottle Taps</li>
+            <li class="music-item">Branch Manager</li>
+            <li class="music-item">Bushcraft</li>
+            <li class="music-item">Carbon Based</li>
+            <li class="music-item">Cascades</li>
+            <li class="music-item">Cereal and Coffee</li>
+            <li class="music-item">Changing Gears</li>
+            <li class="music-item">Chip Pad</li>
+            <li class="music-item">Cityskate</li>
+            <li class="music-item">Creaks</li>
+            <li class="music-item">Creatures</li>
+            <li class="music-item">Discovering Fire</li>
+            <li class="music-item">Domestic Artifacts</li>
+            <li class="music-item">Eternal Waters</li>
+            <li class="music-item">Ferrous Raindrops</li>
+            <li class="music-item">Fibers and Glass</li>
+            <li class="music-item">Filthy Garage</li>
+            <li class="music-item">Fingerlings</li>
+            <li class="music-item">Flow</li>
+            <li class="music-item">Flux</li>
+            <li class="music-item">Forestation</li>
+            <li class="music-item">Forgotten Lands</li>
+            <li class="music-item">Found Sound</li>
+            <li class="music-item">Future Bottles</li>
+            <li class="music-item">Gangster</li>
+            <li class="music-item">Garbage Island</li>
+            <li class="music-item">Gears</li>
+            <li class="music-item">Giant Ions</li>
+            <li class="music-item">Harmonic Jugs</li>
+            <li class="music-item">Ingots</li>
+            <li class="music-item">Innovation</li>
+            <li class="music-item">Junkyard Mechanics</li>
+            <li class="music-item">Keys on Spikes</li>
+            <li class="music-item">Life in the Forest</li>
+            <li class="music-item">Life Out There</li>
+            <li class="music-item">Liquidation</li>
+            <li class="music-item">Lost Civilization</li>
+            <li class="music-item">Mechestra</li>
+            <li class="music-item">Menagerie</li>
+            <li class="music-item">Micro World</li>
+            <li class="music-item">Nebula Pad</li>
+            <li class="music-item">Oil Well</li>
+            <li class="music-item">Plastics</li>
+            <li class="music-item">Popcorn Rain</li>
+            <li class="music-item">Popping Bubbles</li>
+            <li class="music-item">Potholes</li>
+            <li class="music-item">Pumpy Spokes</li>
+            <li class="music-item">Reach the Target</li>
+            <li class="music-item">Read the Manual</li>
+            <li class="music-item">Restricted Zone</li>
+            <li class="music-item">River Playgrounds</li>
+            <li class="music-item">Rustle Crumples</li>
+            <li class="music-item">Salt Haven</li>
+            <li class="music-item">Seedy Fellow</li>
+            <li class="music-item">Shine Spark</li>
+            <li class="music-item">Sleep Bell</li>
+            <li class="music-item">Solar Breath</li>
+            <li class="music-item">Special Steel</li>
+            <li class="music-item">Stamped Out</li>
+            <li class="music-item">Steel Striker</li>
+            <li class="music-item">Sticks & Stones</li>
+            <li class="music-item">Streets of Shanghai</li>
+            <li class="music-item">Temple Sounds</li>
+            <li class="music-item">Time's Up</li>
+            <li class="music-item">Tiny Battalion</li>
+            <li class="music-item">Transport</li>
+            <li class="music-item">Unassuming Tubes</li>
+            <li class="music-item">Valve Card</li>
+            <li class="music-item">Waterworks</li>
+            <li class="music-item">World of Whirls</li>
+            <li class="music-item">Wormwood</li>
+          </ul>
+        </div>
+        <div class="column" id="hkd">
+          <div class="column-header">
+            <h2>HKD</h2>
+          </div>
+          <ul class="music-list">
+            <li class="music-item">2gether</li>
+            <li class="music-item">Absolute Silk</li>
+            <li class="music-item">Acrobat</li>
+            <li class="music-item">Across The Sky</li>
+            <li class="music-item">Adapt</li>
+            <li class="music-item">Adrift</li>
+            <li class="music-item">Aimless Mind</li>
+            <li class="music-item">Alien R&B</li>
+            <li class="music-item">All the Feels</li>
+            <li class="music-item">Always Be There</li>
+            <li class="music-item">Anonymous Heart</li>
+            <li class="music-item">Anybody Else But You</li>
+            <li class="music-item">At Ease</li>
+            <li class="music-item">Baby I Know</li>
+            <li class="music-item">Back Then</li>
+            <li class="music-item">Beacon</li>
+            <li class="music-item">Beat of My Heart</li>
+            <li class="music-item">Been Tellin' Me</li>
+            <li class="music-item">Bend and Straighten</li>
+            <li class="music-item">Bionic Devices</li>
+            <li class="music-item">Blame</li>
+            <li class="music-item">Bleeding Heart</li>
+            <li class="music-item">Blurred Out</li>
+            <li class="music-item">Breathtaking</li>
+            <li class="music-item">Brighter Days</li>
+            <li class="music-item">Bring Me To Life</li>
+            <li class="music-item">Broken Bebop</li>
+            <li class="music-item">Broken Silence</li>
+            <li class="music-item">Call Me</li>
+            <li class="music-item">Callin' You Like Ooo</li>
+            <li class="music-item">Candidness</li>
+            <li class="music-item">Candy Shop</li>
+            <li class="music-item">Clandestine</li>
+            <li class="music-item">Cloud 9</li>
+            <li class="music-item">Cold Love</li>
+            <li class="music-item">Confess</li>
+            <li class="music-item">Crave</li>
+            <li class="music-item">Cybernetic System</li>
+            <li class="music-item">Dabe</li>
+            <li class="music-item">Dedicated</li>
+            <li class="music-item">Delusions</li>
+            <li class="music-item">Descending</li>
+            <li class="music-item">Desirous</li>
+            <li class="music-item">Devil Sound</li>
+            <li class="music-item">Distractions</li>
+            <li class="music-item">Don't Know Anymore</li>
+            <li class="music-item">Don't Need Too Much</li>
+            <li class="music-item">Dopamine Rush</li>
+            <li class="music-item">Double Rainbow</li>
+            <li class="music-item">Down Down Down</li>
+            <li class="music-item">Downer</li>
+            <li class="music-item">Dream Team</li>
+            <li class="music-item">Dynamic Ooos</li>
+            <li class="music-item">Effervescent</li>
+            <li class="music-item">Electro Dreams</li>
+            <li class="music-item">Emotional Ties</li>
+            <li class="music-item">Endure</li>
+            <li class="music-item">Enlighten</li>
+            <li class="music-item">Ephemeral</li>
+            <li class="music-item">Epic Morning</li>
+            <li class="music-item">Escapism</li>
+            <li class="music-item">Eternal WEekend</li>
+            <li class="music-item">Evolution</li>
+            <li class="music-item">Faithful</li>
+            <li class="music-item">Falling NIghts</li>
+            <li class="music-item">Fallout</li>
+            <li class="music-item">Farewell My Love</li>
+            <li class="music-item">Feelin' Good</li>
+            <li class="music-item">Felt Cute</li>
+            <li class="music-item">Felt This Before</li>
+            <li class="music-item">Find Your Way</li>
+            <li class="music-item">Fit In</li>
+            <li class="music-item">Fixated</li>
+            <li class="music-item">Flare Lights</li>
+            <li class="music-item">Flossin</li>
+            <li class="music-item">Foreign Lands</li>
+            <li class="music-item">Forgot Valentine's Day</li>
+            <li class="music-item">Forming Lines</li>
+            <li class="music-item">Fragile</li>
+            <li class="music-item">Free Spirit</li>
+            <li class="music-item">From Me</li>
+            <li class="music-item">Frontman</li>
+            <li class="music-item">FutureLove</li>
+            <li class="music-item">FutureVox</li>
+            <li class="music-item">Fuzzy Memories</li>
+            <li class="music-item">Give and Take</li>
+            <li class="music-item">Glass Houses</li>
+            <li class="music-item">Glazed</li>
+            <li class="music-item">Glimmer of Hope</li>
+            <li class="music-item">Going Up</li>
+            <li class="music-item">Gold Cases</li>
+            <li class="music-item">Grown Apart</li>
+            <li class="music-item">Guilt Trip</li>
+            <li class="music-item">Hand in Hand</li>
+            <li class="music-item">Hazy Days</li>
+            <li class="music-item">Heal with Me</li>
+            <li class="music-item">Heart Broken</li>
+            <li class="music-item">Hindsight</li>
+            <li class="music-item">Hold Me</li>
+            <li class="music-item">Hold On Tight</li>
+            <li class="music-item">Honestly</li>
+            <li class="music-item">Hype Lead</li>
+            <li class="music-item">I Been Wanting Something</li>
+            <li class="music-item">I Don't Need You</li>
+            <li class="music-item">I Don't Wanna Be</li>
+            <li class="music-item">I Don't Want You</li>
+            <li class="music-item">I Know You're Lying</li>
+            <li class="music-item">I Wanna Be Free</li>
+            <li class="music-item">If You Try</li>
+            <li class="music-item">iMood</li>
+            <li class="music-item">Impedance</li>
+            <li class="music-item">In You</li>
+            <li class="music-item">Infatuation</li>
+            <li class="music-item">Inputs</li>
+            <li class="music-item">Insatiable</li>
+            <li class="music-item">Isolation</li>
+            <li class="music-item">Joyful Morning</li>
+            <li class="music-item">Keep Fighting</li>
+            <li class="music-item">Keep Going</li>
+            <li class="music-item">Keepsake</li>
+            <li class="music-item">Lady Swing</li>
+            <li class="music-item">Last Dance</li>
+            <li class="music-item">Leap of Faith</li>
+            <li class="music-item">Let Me Love U</li>
+            <li class="music-item">Let's Have a Party</li>
+            <li class="music-item">Lifeline</li>
+            <li class="music-item">Light</li>
+            <li class="music-item">Lilt</li>
+            <li class="music-item">Linked Up</li>
+            <li class="music-item">Little Bit Majestic</li>
+            <li class="music-item">Lonely Call</li>
+            <li class="music-item">Lonely Wail</li>
+            <li class="music-item">Lost in My Feels</li>
+            <li class="music-item">Love Addict</li>
+            <li class="music-item">Love Shy</li>
+            <li class="music-item">Love Talk</li>
+            <li class="music-item">Low Feeling</li>
+            <li class="music-item">Low Spirit</li>
+            <li class="music-item">Loyal</li>
+            <li class="music-item">Lush Planet</li>
+            <li class="music-item">Magnetism</li>
+            <li class="music-item">Mangled Hums</li>
+            <li class="music-item">Melodic Croon</li>
+            <li class="music-item">Midnight Phone</li>
+            <li class="music-item">Mindframe</li>
+            <li class="music-item">Minimally Maxed</li>
+            <li class="music-item">Misty Eyed</li>
+            <li class="music-item">Modulated Feelings</li>
+            <li class="music-item">Moonstruck</li>
+            <li class="music-item">Must Be Something</li>
+            <li class="music-item">My Love My Love</li>
+            <li class="music-item">Need U</li>
+            <li class="music-item">Never Come Back</li>
+            <li class="music-item">Never There</li>
+            <li class="music-item">New Money</li>
+            <li class="music-item">Night Owl</li>
+            <li class="music-item">Nightlyfe</li>
+            <li class="music-item">No Destination</li>
+            <li class="music-item">No Goodbyes</li>
+            <li class="music-item">No Pressure</li>
+            <li class="music-item">No Troubles</li>
+            <li class="music-item">Not Much to Say</li>
+            <li class="music-item">Obsession</li>
+            <li class="music-item">Oh Yeah Love</li>
+            <li class="music-item">One Day Soon</li>
+            <li class="music-item">Only Feeling</li>
+            <li class="music-item">Open Communication</li>
+            <li class="music-item">Open Soul</li>
+            <li class="music-item">Open Your Heart</li>
+            <li class="music-item">Opulence</li>
+            <li class="music-item">Outta My Head</li>
+            <li class="music-item">Past Green</li>
+            <li class="music-item">Perception</li>
+            <li class="music-item">Personal Space</li>
+            <li class="music-item">Playing Games</li>
+            <li class="music-item">Plz Don't Go</li>
+            <li class="music-item">Point of View</li>
+            <li class="music-item">Poised</li>
+            <li class="music-item">Precious Stones</li>
+            <li class="music-item">Pretty Light</li>
+            <li class="music-item">Projection</li>
+            <li class="music-item">Propositions</li>
+            <li class="music-item">Provocation</li>
+            <li class="music-item">Push Back</li>
+            <li class="music-item">Questioning</li>
+            <li class="music-item">Raw Honey</li>
+            <li class="music-item">Reaching Out</li>
+            <li class="music-item">Rebellion</li>
+            <li class="music-item">Reciprocate</li>
+            <li class="music-item">Reconnect</li>
+            <li class="music-item">Reel You In</li>
+            <li class="music-item">Renaissance</li>
+            <li class="music-item">Retro Tongues</li>
+            <li class="music-item">Ride the Tide</li>
+            <li class="music-item">Robo Dance</li>
+            <li class="music-item">Ro-Bro</li>
+            <li class="music-item">Ropes</li>
+            <li class="music-item">Rose Petals</li>
+            <li class="music-item">Running</li>
+            <li class="music-item">Saccharine</li>
+            <li class="music-item">Sad Panda</li>
+            <li class="music-item">Sassy Bae</li>
+            <li class="music-item">Searching for Nothing</li>
+            <li class="music-item">Second Spark</li>
+            <li class="music-item">Secret Agent</li>
+            <li class="music-item">Selfish</li>
+            <li class="music-item">Shine a Light</li>
+            <li class="music-item">Shine On</li>
+            <li class="music-item">Short Leash</li>
+            <li class="music-item">Since You Asked</li>
+            <li class="music-item">Small Talk</li>
+            <li class="music-item">Soft Velvet</li>
+            <li class="music-item">Softhearted</li>
+            <li class="music-item">Softly Spoken</li>
+            <li class="music-item">Solars</li>
+            <li class="music-item">Some Attitude</li>
+            <li class="music-item">Soothe</li>
+            <li class="music-item">Soulfire</li>
+            <li class="music-item">Sound of Love</li>
+            <li class="music-item">Spacey</li>
+            <li class="music-item">Speak Your Mind</li>
+            <li class="music-item">Spell It Out</li>
+            <li class="music-item">Spread Your Wings</li>
+            <li class="music-item">Stay Tonight</li>
+            <li class="music-item">Still Got Time</li>
+            <li class="music-item">Stuck on You</li>
+            <li class="music-item">Submission</li>
+            <li class="music-item">Sun is Shinin'</li>
+            <li class="music-item">Sweet Bites</li>
+            <li class="music-item">Sweet Tooth</li>
+            <li class="music-item">Synchronicity</li>
+            <li class="music-item">Take Flight</li>
+            <li class="music-item">Take Me Back</li>
+            <li class="music-item">That Look</li>
+            <li class="music-item">The Alter</li>
+            <li class="music-item">The Others</li>
+            <li class="music-item">The Right Words</li>
+            <li class="music-item">Time Lost</li>
+            <li class="music-item">Touch</li>
+            <li class="music-item">Treading Lightly</li>
+            <li class="music-item">Tropics</li>
+            <li class="music-item">Twisted Heartache</li>
+            <li class="music-item">Ultimatum</li>
+            <li class="music-item">Unconditional</li>
+            <li class="music-item">Understated</li>
+            <li class="music-item">Unfold</li>
+            <li class="music-item">Up All Night</li>
+            <li class="music-item">Vapor Choir</li>
+            <li class="music-item">Vibrato Silk</li>
+            <li class="music-item">Visions of You</li>
+            <li class="music-item">Voicemail</li>
+            <li class="music-item">Watch Me</li>
+            <li class="music-item">We Will Rise</li>
+            <li class="music-item">We'll Be Alright</li>
+            <li class="music-item">What They Want</li>
+            <li class="music-item">Whatever U Need</li>
+            <li class="music-item">Wholesome</li>
+            <li class="music-item">Why Don't We</li>
+            <li class="music-item">Wild Side</li>
+            <li class="music-item">Willpower</li>
+            <li class="music-item">Within Reach</li>
+            <li class="music-item">Woo!</li>
+            <li class="music-item">You and I</li>
+          </ul>
+        </div>
+      </div>
+
+      <footer>
+        <p>
+          copyright © <span id="year"></span> Music Collection | Made with
+          <span style="color: red">&#10084;&#65039;</span> by Vruttik Tailor
+        </p>
+      </footer>
+
+      <script>
+        // Current year dynamically set karne ke liye
+        document.getElementById("year").textContent = new Date().getFullYear();
+      </script>
+    </div>
+  </body>
+</html>
