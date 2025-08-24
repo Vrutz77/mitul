@@ -134,12 +134,13 @@
           font-size: 1rem;
         }
       }
-
+    </style>
+    <style>
       :root {
-        --bg: #0f172a; /* slate-900 */
-        --bg-soft: #111827; /* gray-900 */
-        --text: #e5e7eb; /* gray-200 */
-        --accent: #60a5fa; /* blue-400 */
+        --bg: #0f172a;
+        --bg-soft: #111827;
+        --text: #e5e7eb;
+        --accent: #60a5fa;
         --ring: rgba(96, 165, 250, 0.35);
       }
       * {
@@ -157,8 +158,10 @@
       }
 
       .nav-wrap {
-        position: sticky;
+        position: fixed;
         top: 0;
+        left: 0;
+        right: 0;
         z-index: 50;
         backdrop-filter: saturate(160%) blur(8px);
         background: linear-gradient(
@@ -167,7 +170,12 @@
           rgba(15, 23, 42, 0.6)
         );
         border-bottom: 1px solid rgba(148, 163, 184, 0.2);
+        transition: transform 0.3s ease-in-out;
       }
+      .nav-wrap.hide {
+        transform: translateY(-100%);
+      }
+
       .nav {
         max-width: 1100px;
         margin: 0 auto;
@@ -205,15 +213,13 @@
         outline: 2px solid var(--accent);
         outline-offset: 2px;
       }
-      /* Menu container */
+
       .menu {
         display: flex;
         align-items: center;
         gap: 0.25rem;
         flex-wrap: wrap;
       }
-
-      /* Each link (chip style) */
       .menu a {
         --chip-bg: rgba(255, 255, 255, 0.06);
         display: inline-block;
@@ -239,7 +245,6 @@
         border-color: var(--accent);
       }
 
-      /* Mobile styles */
       @media (max-width: 768px) {
         .toggle {
           display: inline-flex;
@@ -247,7 +252,7 @@
           gap: 0.4rem;
         }
         .menu {
-          display: none; /* hidden by default on mobile */
+          display: none;
           flex-direction: column;
           align-items: stretch;
           gap: 0.5rem;
@@ -262,7 +267,6 @@
         }
       }
 
-      /* Optional: horizontally scrollable chips on small laptops when many items */
       @media (min-width: 769px) and (max-width: 1024px) {
         .menu {
           flex-wrap: nowrap;
@@ -281,7 +285,7 @@
 
       main {
         max-width: 1100px;
-        margin: 1.25rem auto;
+        margin: 5rem auto 1.25rem;
         padding: 0 1rem;
       }
       .hint {
@@ -297,7 +301,27 @@
         btn.setAttribute("aria-expanded", open ? "true" : "false");
       });
 
-      // Optional: mark active item based on hash
+      // Close menu when clicking link (for mobile)
+      document.querySelectorAll("#menu a").forEach((a) => {
+        a.addEventListener("click", () => {
+          menu.classList.remove("open");
+          btn.setAttribute("aria-expanded", "false");
+        });
+      });
+
+      // Hide navbar on scroll down, show on scroll up
+      let lastScroll = 0;
+      const navbar = document.getElementById("navbar");
+      window.addEventListener("scroll", () => {
+        const current = window.pageYOffset;
+        if (current > lastScroll) {
+          navbar.classList.add("hide");
+        } else {
+          navbar.classList.remove("hide");
+        }
+        lastScroll = current;
+      });
+
       function markActive() {
         const hash = decodeURIComponent(location.hash || "").replace("#", "");
         document
@@ -305,7 +329,7 @@
           .forEach((a) => a.classList.remove("active"));
         if (!hash) return;
         const el = document.querySelector(
-          '.menu a[href="#' + CSS.escape(hash) + '"]'
+          '.menu a[href$="#" + hash.toLowerCase()]'
         );
         if (el) el.classList.add("active");
       }
@@ -314,7 +338,7 @@
     </script>
   </head>
   <body>
-    <header class="nav-wrap">
+    <header class="nav-wrap" id="navbar">
       <nav class="nav" aria-label="Primary">
         <div class="brand" aria-label="Brand">
           <span class="dot" aria-hidden="true"></span>
@@ -344,51 +368,50 @@
           Menu
         </button>
         <div id="menu" class="menu" role="menubar">
-          <!-- MENU ITEMS (from doc.txt prefixes) -->
-          <a href="#60S" role="menuitem">60S</a>
-          <a href="#70S" role="menuitem">70S</a>
-          <a href="#80S" role="menuitem">80S</a>
-          <a href="#ARA" role="menuitem">ARA</a>
-          <a href="#ATH" role="menuitem">ATH</a>
-          <a href="#BBX" role="menuitem">BBX</a>
-          <a href="#BSL" role="menuitem">BSL</a>
-          <a href="#BTE" role="menuitem">BTE</a>
-          <a href="#CHP" role="menuitem">CHP</a>
-          <a href="#CRT" role="menuitem">CRT</a>
-          <a href="#DBK" role="menuitem">DBK</a>
-          <a href="#DMC" role="menuitem">DMC</a>
-          <a href="#DRP" role="menuitem">DRP</a>
-          <a href="#DSH" role="menuitem">DSH</a>
-          <a href="#DTV" role="menuitem">DTV</a>
-          <a href="#EXP" role="menuitem">EXP</a>
-          <a href="#FBK" role="menuitem">FBK</a>
-          <a href="#FOS" role="menuitem">FOS</a>
-          <a href="#HKD" role="menuitem">HKD</a>
-          <a href="#HNY" role="menuitem">HNY</a>
-          <a href="#IGR" role="menuitem">IGR</a>
-          <a href="#IHH" role="menuitem">IHH</a>
-          <a href="#IWD" role="menuitem">IWD</a>
-          <a href="#LED" role="menuitem">LED</a>
-          <a href="#MDC" role="menuitem">MDC</a>
-          <a href="#MMT" role="menuitem">MMT</a>
-          <a href="#NTR" role="menuitem">NTR</a>
-          <a href="#PCL" role="menuitem">PCL</a>
-          <a href="#PFC" role="menuitem">PFC</a>
-          <a href="#PSP" role="menuitem">PSP</a>
-          <a href="#PTC" role="menuitem">PTC</a>
-          <a href="#PTN" role="menuitem">PTN</a>
-          <a href="#RCR" role="menuitem">RCR</a>
-          <a href="#RTK" role="menuitem">RTK</a>
-          <a href="#STH" role="menuitem">STH</a>
-          <a href="#SZN" role="menuitem">SZN</a>
-          <a href="#TOY" role="menuitem">TOY</a>
-          <a href="#TPD" role="menuitem">TPD</a>
-          <a href="#TRD" role="menuitem">TRD</a>
-          <a href="#VCD" role="menuitem">VCD</a>
-          <a href="#VOS" role="menuitem">VOS</a>
-          <a href="#VTS" role="menuitem">VTS</a>
-          <a href="#WRP" role="menuitem">WRP</a>
-          <a href="#ZHR" role="menuitem">ZHR</a>
+          <a href="new.html#60s" role="menuitem">60S</a>
+          <a href="new.html#70s" role="menuitem">70S</a>
+          <a href="new.html#80s" role="menuitem">80S</a>
+          <a href="new.html#ara" role="menuitem">ARA</a>
+          <a href="new.html#ath" role="menuitem">ATH</a>
+          <a href="new.html#bbx" role="menuitem">BBX</a>
+          <a href="new.html#bsl" role="menuitem">BSL</a>
+          <a href="new.html#bte" role="menuitem">BTE</a>
+          <a href="new.html#chp" role="menuitem">CHP</a>
+          <a href="new.html#crt" role="menuitem">CRT</a>
+          <a href="new.html#dbk" role="menuitem">DBK</a>
+          <a href="new.html#dmc" role="menuitem">DMC</a>
+          <a href="new.html#drp" role="menuitem">DRP</a>
+          <a href="new.html#dsh" role="menuitem">DSH</a>
+          <a href="new.html#dtv" role="menuitem">DTV</a>
+          <a href="new.html#exp" role="menuitem">EXP</a>
+          <a href="new.html#fbk" role="menuitem">FBK</a>
+          <a href="new.html#fos" role="menuitem">FOS</a>
+          <a href="new.html#hkd" role="menuitem">HKD</a>
+          <a href="new.html#hny" role="menuitem">HNY</a>
+          <a href="new.html#igr" role="menuitem">IGR</a>
+          <a href="new.html#ihh" role="menuitem">IHH</a>
+          <a href="new.html#iwd" role="menuitem">IWD</a>
+          <a href="new.html#led" role="menuitem">LED</a>
+          <a href="new.html#mdc" role="menuitem">MDC</a>
+          <a href="new.html#mmt" role="menuitem">MMT</a>
+          <a href="new.html#ntr" role="menuitem">NTR</a>
+          <a href="new.html#pcl" role="menuitem">PCL</a>
+          <a href="new.html#pfc" role="menuitem">PFC</a>
+          <a href="new.html#psp" role="menuitem">PSP</a>
+          <a href="new.html#ptc" role="menuitem">PTC</a>
+          <a href="new.html#ptn" role="menuitem">PTN</a>
+          <a href="new.html#rcr" role="menuitem">RCR</a>
+          <a href="new.html#rtk" role="menuitem">RTK</a>
+          <a href="new.html#sth" role="menuitem">STH</a>
+          <a href="new.html#szn" role="menuitem">SZN</a>
+          <a href="new.html#toy" role="menuitem">TOY</a>
+          <a href="new.html#tpd" role="menuitem">TPD</a>
+          <a href="new.html#trd" role="menuitem">TRD</a>
+          <a href="new.html#vcd" role="menuitem">VCD</a>
+          <a href="new.html#vos" role="menuitem">VOS</a>
+          <a href="new.html#vts" role="menuitem">VTS</a>
+          <a href="new.html#wrp" role="menuitem">WRP</a>
+          <a href="new.html#zhr" role="menuitem">ZHR</a>
         </div>
       </nav>
     </header>
