@@ -136,146 +136,264 @@
       }
     </style>
     <style>
-    :root {
-      --bg: #0f172a;
-      --bg-soft: #111827;
-      --text: #e5e7eb;
-      --accent: #60a5fa;
-      --ring: rgba(96,165,250,.35);
-    }
-    * { box-sizing: border-box; }
-    html, body { margin: 0; padding: 0; font-family: system-ui, -apple-system, Segoe UI, Roboto, "Helvetica Neue", Arial, "Noto Sans", "Apple Color Emoji", "Segoe UI Emoji"; background: var(--bg); color: var(--text); }
-
-    .nav-wrap {
-      position: relative;
-      backdrop-filter: saturate(160%) blur(8px);
-      background: linear-gradient(180deg, rgba(15,23,42,.9), rgba(15,23,42,.6));
-      border-bottom: 1px solid rgba(148,163,184,.2);
-    }
-
-    .nav {
-      max-width: 1100px; margin: 0 auto; padding: .75rem 1rem;
-      display: flex; align-items: center; justify-content: space-between; gap: .75rem;
-    }
-    .brand { font-weight: 700; letter-spacing: .3px; display: flex; align-items: center; gap: .6rem; }
-    .brand .dot { width: 8px; height: 8px; border-radius: 999px; background: var(--accent); box-shadow: 0 0 0 6px var(--ring); }
-
-    .toggle { display: none; background: transparent; border: 1px solid rgba(148,163,184,.35); color: var(--text); padding: .5rem .6rem; border-radius: .6rem; cursor: pointer; }
-    .toggle:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
-
-    .menu {
-      display: flex; align-items: center; gap: .25rem; flex-wrap: wrap;
-    }
-    .menu a {
-      --chip-bg: rgba(255,255,255,.06);
-      display: inline-block; text-decoration: none; color: var(--text);
-      padding: .5rem .75rem; border-radius: 999px; font-size: .95rem; line-height: 1; border: 1px solid rgba(148,163,184,.25);
-      background: var(--chip-bg);
-      transition: transform .16s ease, background .16s ease, border-color .16s ease, box-shadow .16s ease;
-      white-space: nowrap;
-    }
-    .menu a:hover { transform: translateY(-1px); border-color: rgba(96,165,250,.5); box-shadow: 0 4px 20px -8px var(--ring); }
-    .menu a.active { background: rgba(96,165,250,.18); border-color: var(--accent); }
-
-    @media (max-width: 768px) {
-      .toggle { display: inline-flex; align-items: center; gap: .4rem; }
-      .menu { 
-        display: none; 
-        grid-template-columns: repeat(3, 1fr); /* default 3 columns */
-        gap: .5rem; 
-        padding: 1rem; 
-        position: fixed; 
-        top: 60px; 
-        left: 0; 
-        right: 0; 
-        bottom: 0; 
-        background: var(--bg-soft); 
-        overflow-y: auto;
+      :root {
+        --bg: #0f172a;
+        --bg-soft: #111827;
+        --text: #e5e7eb;
+        --accent: #60a5fa;
+        --ring: rgba(96, 165, 250, 0.35);
       }
-      .menu.show { display: grid; }
-      .menu a { text-align: center; font-size: 1rem; padding: .75rem; }
-
-      /* adjust to 5 or 6 columns based on screen size */
-      @media (max-width: 768px) and (min-width: 480px) {
-        .menu.show { grid-template-columns: repeat(5, 1fr); }
+      * {
+        box-sizing: border-box;
       }
-      @media (max-width: 480px) {
-        .menu.show { grid-template-columns: repeat(3, 1fr); }
+      html,
+      body {
+        margin: 0;
+        padding: 0;
+        font-family: system-ui, -apple-system, Segoe UI, Roboto,
+          "Helvetica Neue", Arial, "Noto Sans", "Apple Color Emoji",
+          "Segoe UI Emoji";
+        background: var(--bg);
+        color: var(--text);
       }
-    }
 
-    @media (min-width: 769px) and (max-width: 1024px) {
-      .menu { flex-wrap: nowrap; overflow-x: auto; white-space: nowrap; scrollbar-width: thin; }
-      .menu::-webkit-scrollbar { height: 8px; }
-      .menu::-webkit-scrollbar-thumb { background: rgba(148,163,184,.35); border-radius: 999px; }
-    }
+      .nav-wrap {
+        position: relative;
+        backdrop-filter: saturate(160%) blur(8px);
+        background: linear-gradient(
+          180deg,
+          rgba(15, 23, 42, 0.9),
+          rgba(15, 23, 42, 0.6)
+        );
+        border-bottom: 1px solid rgba(148, 163, 184, 0.2);
+      }
 
-    main { max-width: 1100px; margin: 2rem auto 1.25rem; padding: 0 1rem; }
-    .hint { opacity: .7; font-size: .95rem; }
-  </style>
+      .nav {
+        max-width: 1100px;
+        margin: 0 auto;
+        padding: 0.75rem 1rem;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 0.75rem;
+      }
+      .brand {
+        font-weight: 700;
+        letter-spacing: 0.3px;
+        display: flex;
+        align-items: center;
+        gap: 0.6rem;
+      }
+      .brand .dot {
+        width: 8px;
+        height: 8px;
+        border-radius: 999px;
+        background: var(--accent);
+        box-shadow: 0 0 0 6px var(--ring);
+      }
+
+      .toggle {
+        display: none;
+        background: transparent;
+        border: 1px solid rgba(148, 163, 184, 0.35);
+        color: var(--text);
+        padding: 0.5rem 0.6rem;
+        border-radius: 0.6rem;
+        cursor: pointer;
+      }
+      .toggle:focus-visible {
+        outline: 2px solid var(--accent);
+        outline-offset: 2px;
+      }
+
+      .menu {
+        display: flex;
+        align-items: center;
+        gap: 0.25rem;
+        flex-wrap: wrap;
+      }
+      .menu a {
+        --chip-bg: rgba(255, 255, 255, 0.06);
+        display: inline-block;
+        text-decoration: none;
+        color: var(--text);
+        padding: 0.5rem 0.75rem;
+        border-radius: 999px;
+        font-size: 0.95rem;
+        line-height: 1;
+        border: 1px solid rgba(148, 163, 184, 0.25);
+        background: var(--chip-bg);
+        transition: transform 0.16s ease, background 0.16s ease,
+          border-color 0.16s ease, box-shadow 0.16s ease;
+        white-space: nowrap;
+      }
+      .menu a:hover {
+        transform: translateY(-1px);
+        border-color: rgba(96, 165, 250, 0.5);
+        box-shadow: 0 4px 20px -8px var(--ring);
+      }
+      .menu a.active {
+        background: rgba(96, 165, 250, 0.18);
+        border-color: var(--accent);
+      }
+
+      @media (max-width: 768px) {
+        .toggle {
+          display: inline-flex;
+          align-items: center;
+          gap: 0.4rem;
+        }
+        .menu {
+          display: none;
+          grid-template-columns: repeat(6, 1fr); /* 6 columns on mobile */
+          gap: 0.5rem;
+          padding: 1rem;
+          position: fixed;
+          top: 60px;
+          left: 0;
+          right: 0;
+          bottom: 0;
+          background: var(--bg-soft);
+          overflow-y: auto;
+        }
+        .menu.show {
+          display: grid;
+        }
+        .menu-header {
+          grid-column: span 6;
+          display: flex;
+          justify-content: flex-end;
+        }
+        .cancel-btn {
+          background: transparent;
+          border: 1px solid rgba(148, 163, 184, 0.35);
+          color: var(--text);
+          padding: 0.4rem 0.6rem;
+          border-radius: 0.5rem;
+          cursor: pointer;
+        }
+        .menu a {
+          text-align: center;
+          font-size: 0.9rem;
+          padding: 0.5rem;
+        }
+      }
+
+      @media (min-width: 769px) and (max-width: 1024px) {
+        .menu {
+          flex-wrap: nowrap;
+          overflow-x: auto;
+          white-space: nowrap;
+          scrollbar-width: thin;
+        }
+        .menu::-webkit-scrollbar {
+          height: 8px;
+        }
+        .menu::-webkit-scrollbar-thumb {
+          background: rgba(148, 163, 184, 0.35);
+          border-radius: 999px;
+        }
+      }
+
+      main {
+        max-width: 1100px;
+        margin: 2rem auto 1.25rem;
+        padding: 0 1rem;
+      }
+      .hint {
+        opacity: 0.7;
+        font-size: 0.95rem;
+      }
+      @media (max-width: 768px) {
+        .menu.show {
+          height: fit-content;
+          display: grid;
+        }
+      }
+    </style>
   </head>
   <body>
-   
-  <header class="nav-wrap" id="navbar">
-    <nav class="nav" aria-label="Primary">
-      <div class="brand" aria-label="Brand">
-        <span class="dot" aria-hidden="true"></span>
-        <span>AutoNav</span>
-      </div>
-      <button class="toggle" id="navToggle" aria-expanded="false" aria-controls="menu" type="button">
-        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-          <path d="M3 6h18M3 12h18M3 18h18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
-        </svg>
-        Menu
-      </button>
-      <div id="menu" class="menu" role="menubar">
-        <a href="new.html#60s" role="menuitem">60S</a>
-        <a href="new.html#70s" role="menuitem">70S</a>
-        <a href="new.html#80s" role="menuitem">80S</a>
-        <a href="new.html#ara" role="menuitem">ARA</a>
-        <a href="new.html#ath" role="menuitem">ATH</a>
-        <a href="new.html#bbx" role="menuitem">BBX</a>
-        <a href="new.html#bsl" role="menuitem">BSL</a>
-        <a href="new.html#bte" role="menuitem">BTE</a>
-        <a href="new.html#chp" role="menuitem">CHP</a>
-        <a href="new.html#crt" role="menuitem">CRT</a>
-        <a href="new.html#dbk" role="menuitem">DBK</a>
-        <a href="new.html#dmc" role="menuitem">DMC</a>
-        <a href="new.html#drp" role="menuitem">DRP</a>
-        <a href="new.html#dsh" role="menuitem">DSH</a>
-        <a href="new.html#dtv" role="menuitem">DTV</a>
-        <a href="new.html#exp" role="menuitem">EXP</a>
-        <a href="new.html#fbk" role="menuitem">FBK</a>
-        <a href="new.html#fos" role="menuitem">FOS</a>
-        <a href="new.html#hkd" role="menuitem">HKD</a>
-        <a href="new.html#hny" role="menuitem">HNY</a>
-        <a href="new.html#igr" role="menuitem">IGR</a>
-        <a href="new.html#ihh" role="menuitem">IHH</a>
-        <a href="new.html#iwd" role="menuitem">IWD</a>
-        <a href="new.html#led" role="menuitem">LED</a>
-        <a href="new.html#mdc" role="menuitem">MDC</a>
-        <a href="new.html#mmt" role="menuitem">MMT</a>
-        <a href="new.html#ntr" role="menuitem">NTR</a>
-        <a href="new.html#pcl" role="menuitem">PCL</a>
-        <a href="new.html#pfc" role="menuitem">PFC</a>
-        <a href="new.html#psp" role="menuitem">PSP</a>
-        <a href="new.html#ptc" role="menuitem">PTC</a>
-        <a href="new.html#ptn" role="menuitem">PTN</a>
-        <a href="new.html#rcr" role="menuitem">RCR</a>
-        <a href="new.html#rtk" role="menuitem">RTK</a>
-        <a href="new.html#sth" role="menuitem">STH</a>
-        <a href="new.html#szn" role="menuitem">SZN</a>
-        <a href="new.html#toy" role="menuitem">TOY</a>
-        <a href="new.html#tpd" role="menuitem">TPD</a>
-        <a href="new.html#trd" role="menuitem">TRD</a>
-        <a href="new.html#vcd" role="menuitem">VCD</a>
-        <a href="new.html#vos" role="menuitem">VOS</a>
-        <a href="new.html#vts" role="menuitem">VTS</a>
-        <a href="new.html#wrp" role="menuitem">WRP</a>
-        <a href="new.html#zhr" role="menuitem">ZHR</a>
-      </div>
-    </nav>
-  </header>
+    <header class="nav-wrap" id="navbar">
+      <nav class="nav" aria-label="Primary">
+        <div class="brand" aria-label="Brand">
+          <span class="dot" aria-hidden="true"></span>
+          <span>AutoNav</span>
+        </div>
+        <button
+          class="toggle"
+          id="navToggle"
+          aria-expanded="false"
+          aria-controls="menu"
+          type="button"
+        >
+          <svg
+            width="22"
+            height="22"
+            viewBox="0 0 24 24"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+            aria-hidden="true"
+          >
+            <path
+              d="M3 6h18M3 12h18M3 18h18"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+            />
+          </svg>
+          Menu
+        </button>
+        <div id="menu" class="menu" role="menubar">
+          <div class="menu-header">
+            <button class="cancel-btn" id="cancelBtn">✖ Close</button>
+          </div>
+          <a href="new.html#60s" role="menuitem">60S</a>
+          <a href="new.html#70s" role="menuitem">70S</a>
+          <a href="new.html#80s" role="menuitem">80S</a>
+          <a href="new.html#ara" role="menuitem">ARA</a>
+          <a href="new.html#ath" role="menuitem">ATH</a>
+          <a href="new.html#bbx" role="menuitem">BBX</a>
+          <a href="new.html#bsl" role="menuitem">BSL</a>
+          <a href="new.html#bte" role="menuitem">BTE</a>
+          <a href="new.html#chp" role="menuitem">CHP</a>
+          <a href="new.html#crt" role="menuitem">CRT</a>
+          <a href="new.html#dbk" role="menuitem">DBK</a>
+          <a href="new.html#dmc" role="menuitem">DMC</a>
+          <a href="new.html#drp" role="menuitem">DRP</a>
+          <a href="new.html#dsh" role="menuitem">DSH</a>
+          <a href="new.html#dtv" role="menuitem">DTV</a>
+          <a href="new.html#exp" role="menuitem">EXP</a>
+          <a href="new.html#fbk" role="menuitem">FBK</a>
+          <a href="new.html#fos" role="menuitem">FOS</a>
+          <a href="new.html#hkd" role="menuitem">HKD</a>
+          <a href="new.html#hny" role="menuitem">HNY</a>
+          <a href="new.html#igr" role="menuitem">IGR</a>
+          <a href="new.html#ihh" role="menuitem">IHH</a>
+          <a href="new.html#iwd" role="menuitem">IWD</a>
+          <a href="new.html#led" role="menuitem">LED</a>
+          <a href="new.html#mdc" role="menuitem">MDC</a>
+          <a href="new.html#mmt" role="menuitem">MMT</a>
+          <a href="new.html#ntr" role="menuitem">NTR</a>
+          <a href="new.html#pcl" role="menuitem">PCL</a>
+          <a href="new.html#pfc" role="menuitem">PFC</a>
+          <a href="new.html#psp" role="menuitem">PSP</a>
+          <a href="new.html#ptc" role="menuitem">PTC</a>
+          <a href="new.html#ptn" role="menuitem">PTN</a>
+          <a href="new.html#rcr" role="menuitem">RCR</a>
+          <a href="new.html#rtk" role="menuitem">RTK</a>
+          <a href="new.html#sth" role="menuitem">STH</a>
+          <a href="new.html#szn" role="menuitem">SZN</a>
+          <a href="new.html#toy" role="menuitem">TOY</a>
+          <a href="new.html#tpd" role="menuitem">TPD</a>
+          <a href="new.html#trd" role="menuitem">TRD</a>
+          <a href="new.html#vcd" role="menuitem">VCD</a>
+          <a href="new.html#vos" role="menuitem">VOS</a>
+          <a href="new.html#vts" role="menuitem">VTS</a>
+          <a href="new.html#wrp" role="menuitem">WRP</a>
+          <a href="new.html#zhr" role="menuitem">ZHR</a>
+        </div>
+      </nav>
+    </header>
 
     <div class="container">
       <!-- <header>
@@ -2910,7 +3028,6 @@
           <span style="color: red">&#10084;&#65039;</span> by Vruttik Tailor
         </p>
       </footer>
-
       <script>
         // Current year dynamically set karne ke liye
         document.getElementById("year").textContent = new Date().getFullYear();
@@ -2919,6 +3036,7 @@
         document.addEventListener("DOMContentLoaded", () => {
           const btn = document.getElementById("navToggle");
           const menu = document.getElementById("menu");
+          const cancelBtn = document.getElementById("cancelBtn");
 
           if (btn && menu) {
             btn.addEventListener("click", () => {
@@ -2928,6 +3046,13 @@
                 menu.classList.contains("show") ? "true" : "false"
               );
             });
+
+            if (cancelBtn) {
+              cancelBtn.addEventListener("click", () => {
+                menu.classList.remove("show");
+                btn.setAttribute("aria-expanded", "false");
+              });
+            }
 
             // Close menu when clicking link (for mobile)
             document.querySelectorAll("#menu a").forEach((a) => {
