@@ -336,13 +336,21 @@
         /* ya flex use kar sakta hai */
       }
     }
-    .s60s {
+    .s60s, .s70s, .s80s, .sara, .sath, .sbbx, .sbsl, .sbte, .schp, .scrt, 
+.sdbk, .sdmc, .sdrp, .sdsh, .sdtv, .sexp, .sfbk, .sfos, .shkd, .shny, 
+.sigr, .sihh, .siwd, .sled, .smdc, .smmt, .sntm, .sobs, .sovt, .spkb, 
+.spls, .spsp, .sptc, .sptn, .srcr, .srtk, .ssth, .sszn, .stoy, .stpd, 
+.strd, .svcd, .svos, .svts, .swrp, .szhr, .snsh {
   position: relative;   /* parent ko relative banaya */
   min-height: 500px;    /* height fixed */
   overflow: hidden;     /* image bahar na nikle */
 }
 
-.s60s img {
+.s60s img, .s70s img, .s80s img, .sara img, .sath img, .sbbx img, .sbsl img, .sbte img, .schp img, .scrt img, 
+.sdbk img, .sdmc img, .sdrp img, .sdsh img, .sdtv img, .sexp img, .sfbk img, .sfos img, .shkd img, .shny img, 
+.sigr img, .sihh img, .siwd img, .sled img, .smdc img, .smmt img, .sntm img, .sobs img, .sovt img, .spkb img, 
+.spls img, .spsp img, .sptc img, .sptn img, .srcr img, .srtk img, .ssth img, .sszn img, .stoy img, .stpd img, 
+.strd img, .svcd img, .svos img, .svts img, .swrp img, .szhr img, .snsh img {
   position: absolute;
   top: 0;
   left: 0;
@@ -353,10 +361,15 @@
   z-index: 1;           /* content ke neeche */
 }
 
-.s60s > * {
+.s60s > *, .s70s > *, .s80s > *, .sara > *, .sath > *, .sbbx > *, .sbsl > *, .sbte > *, .schp > *, .scrt > *, 
+.sdbk > *, .sdmc > *, .sdrp > *, .sdsh > *, .sdtv > *, .sexp > *, .sfbk > *, .sfos > *, .shkd > *, .shny > *, 
+.sigr > *, .sihh > *, .siwd > *, .sled > *, .smdc > *, .smmt > *, .sntm > *, .sobs > *, .sovt > *, .spkb > *, 
+.spls > *, .spsp > *, .sptc > *, .sptn > *, .srcr > *, .srtk > *, .ssth > *, .sszn > *, .stoy > *, .stpd > *, 
+.strd > *, .svcd > *, .svos > *, .svts > *, .swrp > *, .szhr > *, .snsh > * {
   position: relative;   /* text and content upar rahe */
   z-index: 2;
 }
+
 
   </style>
 </head>
@@ -379,13 +392,13 @@
         <div class="menu-header">
           <button class="cancel-btn" id="cancelBtn">✖ Close</button>
         </div>
-        <a href="#60s" role="menuitem">The 60s</a>
+         <a href="#60s" role="menuitem">The 60s</a>
         <a href="#70s" role="menuitem">The 70s</a>
         <a href="#80s" role="menuitem">The 80s</a>
         <a href="#ara" role="menuitem">AURA</a>
         <a href="#ath" role="menuitem">After hours</a>
         <a href="#bbx" role="menuitem">Beat Box</a>
-        <a href="#bsl" role="menuitem">Base Line</a>
+        <a href="#bsl" role="menuitem">Bass Line</a>
         <a href="#bte" role="menuitem">BTE</a>
         <a href="#chp" role="menuitem">Chopped</a>
         <a href="#crt" role="menuitem">CRT</a>
@@ -519,7 +532,7 @@
         <img src="https://productiononyourside-ai.github.io/msk/s60.png" alt="cover image">
       </div>
 
-      <div class="column" id="s70s">
+      <div class="column s70s" id="s70s">
         <div class="column-header">
           <h2>The 70S</h2>
         </div>
@@ -621,8 +634,9 @@
           <li class="music-item">Vintage Psy-Funk</li>
           <li class="music-item">We Were Young</li>
         </ul>
+         <img src="https://vrutz77.github.io/mitul/70s.png" alt="cover image">
       </div>
-      <div class="column" id="s80s">
+      <div class="column s80s" id="s80s">
         <div class="column-header">
           <h2>The 80S</h2>
         </div>
@@ -710,8 +724,9 @@
           <li class="music-item">Virtual Marathon</li>
           <li class="music-item">Youtopia</li>
         </ul>
+        <img src="https://vrutz77.github.io/mitul/80s.png" alt="cover image">
       </div>
-      <div class="column" id="ara">
+      <div class="column sara" id="ara">
         <div class="column-header">
           <h2>AURA</h2>
         </div>
@@ -850,8 +865,9 @@
           <li class="music-item">Yield</li>
           <li class="music-item">Zithosphere</li>
         </ul>
-      </div>
-      <div class="column" id="ath">
+        <img src="https://vrutz77.github.io/mitul/aura.png" alt="cover image">
+              </div>
+      <div class="column sath" id="ath">
         <div class="column-header">
           <h2>After hours</h2>
         </div>
@@ -1042,8 +1058,9 @@
           <li class="music-item">Wreck the Floor</li>
           <li class="music-item">Youngling</li>
         </ul>
+        <img src="https://vrutz77.github.io/mitul/afterhours.png" alt="cover image">
       </div>
-      <div class="column" id="bbx">
+      <div class="column sbbx" id="bbx">
         <div class="column-header">
           <h2>Beat Box</h2>
         </div>
@@ -1087,10 +1104,12 @@
           <li class="music-item">Uncooked Groove</li>
           <li class="music-item">Weird Creatures</li>
         </ul>
+        <img src="https://vrutz77.github.io/mitul/beatbox.png" alt="cover image">
+
       </div>
-      <div class="column" id="bsl">
+      <div class="column sbsl" id="bsl">
         <div class="column-header">
-          <h2>Base Line</h2>
+          <h2>Bass Line</h2>
         </div>
         <ul class="music-list">
           <li class="music-item">Achilles</li>
@@ -1195,6 +1214,8 @@
           <li class="music-item">Walkabout</li>
           <li class="music-item">Walking Upright</li>
         </ul>
+        <img src="https://vrutz77.github.io/mitul/bassline.png" alt="cover image">
+
       </div>
       <div class="column" id="bte">
         <div class="column-header">
