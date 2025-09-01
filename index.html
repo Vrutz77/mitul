@@ -515,6 +515,99 @@
         z-index: 2;
       }
     </style>
+
+    <!-- star fill -->
+    <style>
+      .music-item {
+        position: relative;
+        padding-right: 48px; /* right side space for star */
+        list-style: none;
+      }
+
+      .fav-btn {
+        position: absolute;
+        right: 8px;
+        top: 50%;
+        transform: translateY(-50%);
+        background: none;
+        border: none;
+        font-size: 20px;
+        cursor: pointer;
+        color: #aaa;
+        transition: color 0.2s ease-in-out;
+      }
+
+      .music-item.is-fav .fav-btn {
+        color: gold;
+      }
+      .column-header {
+        display: flex;
+        justify-content: space-between; /* Title left, button right */
+        align-items: center;
+      }
+
+      .refresh-btn {
+        margin-left: 10px;
+        padding: 4px 10px;
+        border: 1px solid rgba(255, 255, 255, 0.5);
+        background: transparent;
+        border-radius: 6px;
+        cursor: pointer;
+        font-size: 16px;
+        color: white; /* 👈 White color */
+        transition: all 0.2s ease-in-out;
+      }
+
+      .refresh-btn:hover {
+        background: rgba(255, 255, 255, 0.15); /* halka white hover */
+      }
+    </style>
+    <script>
+      document.addEventListener("DOMContentLoaded", () => {
+        let favs = JSON.parse(localStorage.getItem("favourites")) || [];
+
+        document.querySelectorAll(".music-item").forEach((li, index) => {
+          const btn = document.createElement("button");
+          btn.className = "fav-btn";
+          li.appendChild(btn);
+
+          if (favs.includes(index)) {
+            li.classList.add("is-fav");
+            btn.innerHTML = "★";
+          } else {
+            btn.innerHTML = "☆";
+          }
+
+          btn.addEventListener("click", () => {
+            li.classList.toggle("is-fav");
+
+            if (li.classList.contains("is-fav")) {
+              btn.innerHTML = "★";
+              favs.push(index);
+            } else {
+              btn.innerHTML = "☆";
+              favs = favs.filter((i) => i !== index);
+            }
+
+            localStorage.setItem("favourites", JSON.stringify(favs));
+          });
+        });
+
+        // ✅ Refresh button ka logic
+        document.getElementById("refreshFavs").addEventListener("click", () => {
+          // LocalStorage clear karo
+          localStorage.removeItem("favourites");
+          favs = [];
+
+          // Sare stars reset karo
+          document.querySelectorAll(".music-item").forEach((li) => {
+            li.classList.remove("is-fav");
+            const btn = li.querySelector(".fav-btn");
+            if (btn) btn.innerHTML = "☆";
+          });
+        });
+      });
+    </script>
   </head>
 
   <body>
@@ -552,7 +645,7 @@
           <div class="menu-header">
             <button class="cancel-btn" id="cancelBtn">✖ Close</button>
           </div>
-          <a href="#60s" role="menuitem">The 60s</a>
+          <a href="#60s" role="menuitem" data-id="60s">The 60s</a>
           <a href="#70s" role="menuitem">The 70s</a>
           <a href="#80s" role="menuitem">The 80s</a>
           <a href="#ara" role="menuitem">AURA</a>
@@ -614,6 +707,7 @@
         <div class="column s60s" id="s60s">
           <div class="column-header">
             <h2>The 60S</h2>
+            <button id="refreshFavs" class="refresh-btn">⟳</button>
           </div>
 
           <ul class="music-list">
@@ -699,10 +793,18 @@
             <h2>The 70S</h2>
           </div>
           <ul class="music-list">
-            <li class="music-item">Acid Washed</li>
-            <li class="music-item">Anti-War</li>
-            <li class="music-item">At Your Leisure</li>
-            <li class="music-item">Ballad All-Star</li>
+            <li class="music-item">
+              Acid Washed<span class="star" data-star="false">☆</span>
+            </li>
+            <li class="music-item">
+              Anti-War<span class="star" data-star="false">☆</span>
+            </li>
+            <li class="music-item">
+              At Your Leisure<span class="star" data-star="false">☆</span>
+            </li>
+            <li class="music-item">
+              Ballad All-Star<span class="star" data-star="false">☆</span>
+            </li>
             <li class="music-item">Bell Bottom Battery</li>
             <li class="music-item">Bell Bottom Glow</li>
             <li class="music-item">Black Sunday</li>
@@ -5743,4 +5845,3 @@
     </div>
   </body>
 </html>
-
