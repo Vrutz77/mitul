@@ -242,62 +242,70 @@
         border-color: var(--accent);
       }
 
-@media (max-width: 768px) {
-  .toggle {
-    display: inline-flex;
-    align-items: center;
-    gap: 0.4rem;
-  }
+      @media (max-width: 768px) {
+        .toggle {
+          display: inline-flex;
+          align-items: center;
+          gap: 0.4rem;
+        }
 
-  .menu {
-    display: none;
-    grid-template-columns: repeat(3, minmax(0, 1fr)); /* ✅ responsive 3 columns */
-    grid-auto-rows: auto;
-    gap: 0.8rem;
-    padding: 1rem;
-    position: fixed;
-    top: 60px;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    height: calc(100vh - 60px); /* ✅ menu screen ke andar fit */
-    background: var(--bg-soft);
-    overflow-y: auto;   /* ✅ vertical scroll */
-    overflow-x: hidden; /* ✅ horizontal scroll band */
-    z-index: 9999;
-    box-sizing: border-box; /* ✅ padding ke saath width fix */
-  }
+        .menu {
+          display: none;
+          grid-template-columns: repeat(
+            3,
+            minmax(0, 1fr)
+          ); /* ✅ responsive 3 columns */
+          grid-auto-rows: auto;
+          gap: 0.8rem;
+          padding: 1rem;
+          position: fixed;
+          top: 60px;
+          left: 0;
+          right: 0;
+          bottom: 0;
+          height: calc(100vh - 60px); /* ✅ menu screen ke andar fit */
+          background: var(--bg-soft);
+          overflow-y: auto; /* ✅ vertical scroll */
+          overflow-x: hidden; /* ✅ horizontal scroll band */
+          z-index: 9999;
+          box-sizing: border-box; /* ✅ padding ke saath width fix */
+        }
 
-  .menu.show {
-    display: grid;
-  }
+        .menu.show {
+          display: grid;
+        }
 
-  .menu-header {
-    grid-column: span 3;
-    display: flex;
-    justify-content: flex-end;
-  }
+        .menu-header {
+          grid-column: span 3;
+          display: flex;
+          justify-content: flex-end;
+        }
 
-  .cancel-btn {
-    background: transparent;
-    border: 1px solid rgba(148, 163, 184, 0.35);
-    color: var(--text);
-    padding: 0.4rem 0.6rem;
-    border-radius: 0.5rem;
-    cursor: pointer;
-  }
+        .cancel-btn {
+          background: transparent;
+          border: 1px solid rgba(148, 163, 184, 0.35);
+          color: var(--text);
+          padding: 0.4rem 0.6rem;
+          border-radius: 0.5rem;
+          cursor: pointer;
+        }
 
-  .menu a {
-    display: block;
-    text-align: center;
-    font-size: 1rem;
-    padding: 0.7rem;
-    border: 1px solid rgba(148, 163, 184, 0.25);
-    border-radius: 0.5rem;
-    word-break: break-word; /* ✅ long text wrap */
-  }
-}
-
+        .menu a {
+          display: flex; /* ✅ flex use taaki text center me rahe */
+          align-items: center; /* ✅ vertically center */
+          justify-content: center; /* ✅ horizontally center */
+          text-align: center;
+          font-size: 1rem;
+          padding: 0.7rem;
+          border: 1px solid rgba(148, 163, 184, 0.25);
+          border-radius: 0.5rem;
+          word-break: break-word; /* ✅ long text wrap */
+          white-space: normal; /* ✅ text wrap allow */
+          line-height: 1.2; /* ✅ thoda compact lines */
+          min-height: 45px; /* ✅ button ki minimum height fix */
+          box-sizing: border-box; /* ✅ padding ke saath proper size */
+        }
+      }
 
       @media (min-width: 769px) and (max-width: 1024px) {
         .menu {
