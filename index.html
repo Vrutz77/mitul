@@ -460,7 +460,7 @@
         width: 100%;
         height: 100%;
         object-fit: cover; /* background ki tarah fit karega */
-        opacity: 0.2; /* transparency */
+        opacity: 0.3; /* transparency */
         z-index: 1; /* content ke neeche */
       }
 
@@ -600,26 +600,7 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 
   // Har column-header ke andar refresh button auto inject
-  document.querySelectorAll(".column-header").forEach((header) => {
-    const refreshBtn = document.createElement("button");
-    refreshBtn.className = "refresh-btn";
-    refreshBtn.innerHTML = "⟳";
-    header.appendChild(refreshBtn);
 
-    refreshBtn.addEventListener("click", () => {
-      const column = header.closest(".column");
-      const columnKey = column.id;
-
-      favs[columnKey] = [];
-      localStorage.setItem("favourites", JSON.stringify(favs));
-
-      column.querySelectorAll(".music-item").forEach((li) => {
-        li.classList.remove("is-fav");
-        const btn = li.querySelector(".fav-btn");
-        if (btn) btn.innerHTML = "☆";
-      });
-    });
-  });
 });
 </script>
 
@@ -808,16 +789,16 @@ document.addEventListener("DOMContentLoaded", () => {
           </div>
           <ul class="music-list">
             <li class="music-item">
-              Acid Washed<span class="star" data-star="false">☆</span>
+              Acid Washed
             </li>
             <li class="music-item">
-              Anti-War<span class="star" data-star="false">☆</span>
+              Anti-War
             </li>
             <li class="music-item">
-              At Your Leisure<span class="star" data-star="false">☆</span>
+              At Your Leisure
             </li>
             <li class="music-item">
-              Ballad All-Star<span class="star" data-star="false">☆</span>
+              Ballad All-Star
             </li>
             <li class="music-item">Bell Bottom Battery</li>
             <li class="music-item">Bell Bottom Glow</li>
