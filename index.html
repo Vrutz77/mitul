@@ -519,95 +519,110 @@
     <!-- star fill -->
     <style>
       .music-item {
-        position: relative;
-        padding-right: 48px; /* right side space for star */
-        list-style: none;
-      }
+  position: relative;
+  padding-right: 48px; /* right side space for star */
+  list-style: none;
+}
 
-      .fav-btn {
-        position: absolute;
-        right: 8px;
-        top: 50%;
-        transform: translateY(-50%);
-        background: none;
-        border: none;
-        font-size: 20px;
-        cursor: pointer;
-        color: #aaa;
-        transition: color 0.2s ease-in-out;
-      }
+.fav-btn {
+  position: absolute;
+  right: 8px;
+  top: 50%;
+  transform: translateY(-50%);
+  background: none;
+  border: none;
+  font-size: 20px;
+  cursor: pointer;
+  color: #6a0dad;
+  transition: color 0.2s ease-in-out;
+}
 
-      .music-item.is-fav .fav-btn {
-        color: gold;
-      }
-      .column-header {
-        display: flex;
-        justify-content: space-between; /* Title left, button right */
-        align-items: center;
-      }
+.music-item.is-fav .fav-btn {
+  color: #6a0dad;
+}
 
-      .refresh-btn {
-        margin-left: 10px;
-        padding: 4px 10px;
-        border: 1px solid rgba(255, 255, 255, 0.5);
-        background: transparent;
-        border-radius: 6px;
-        cursor: pointer;
-        font-size: 16px;
-        color: white; /* 👈 White color */
-        transition: all 0.2s ease-in-out;
-      }
+.column-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
 
-      .refresh-btn:hover {
-        background: rgba(255, 255, 255, 0.15); /* halka white hover */
-      }
+.refresh-btn {
+  margin-left: 10px;
+  padding: 4px 10px;
+  border: 1px solid rgba(255, 255, 255, 0.5);
+  background: transparent;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 16px;
+  color: white; /* 👈 White color */
+  transition: all 0.2s ease-in-out;
+}
+
+.refresh-btn:hover {
+  background: rgba(255, 255, 255, 0.15);
+}
+
     </style>
-    <script>
-      document.addEventListener("DOMContentLoaded", () => {
-        let favs = JSON.parse(localStorage.getItem("favourites")) || [];
+   <script>
+document.addEventListener("DOMContentLoaded", () => {
+  let favs = JSON.parse(localStorage.getItem("favourites")) || {};
 
-        document.querySelectorAll(".music-item").forEach((li, index) => {
-          const btn = document.createElement("button");
-          btn.className = "fav-btn";
-          li.appendChild(btn);
+  // Har ek music-item ke sath star button lagana
+  document.querySelectorAll(".music-item").forEach((li, index) => {
+    const btn = document.createElement("button");
+    btn.className = "fav-btn";
+    li.appendChild(btn);
 
-          if (favs.includes(index)) {
-            li.classList.add("is-fav");
-            btn.innerHTML = "★";
-          } else {
-            btn.innerHTML = "☆";
-          }
+    const columnKey = li.closest(".column").id; // 👈 column identify
+    if (!favs[columnKey]) favs[columnKey] = [];
 
-          btn.addEventListener("click", () => {
-            li.classList.toggle("is-fav");
+    if (favs[columnKey].includes(index)) {
+      li.classList.add("is-fav");
+      btn.innerHTML = "★";
+    } else {
+      btn.innerHTML = "☆";
+    }
 
-            if (li.classList.contains("is-fav")) {
-              btn.innerHTML = "★";
-              favs.push(index);
-            } else {
-              btn.innerHTML = "☆";
-              favs = favs.filter((i) => i !== index);
-            }
+    btn.addEventListener("click", () => {
+      li.classList.toggle("is-fav");
 
-            localStorage.setItem("favourites", JSON.stringify(favs));
-          });
-        });
+      if (li.classList.contains("is-fav")) {
+        btn.innerHTML = "★";
+        favs[columnKey].push(index);
+      } else {
+        btn.innerHTML = "☆";
+        favs[columnKey] = favs[columnKey].filter((i) => i !== index);
+      }
 
-        // ✅ Refresh button ka logic
-        document.getElementById("refreshFavs").addEventListener("click", () => {
-          // LocalStorage clear karo
-          localStorage.removeItem("favourites");
-          favs = [];
+      localStorage.setItem("favourites", JSON.stringify(favs));
+    });
+  });
 
-          // Sare stars reset karo
-          document.querySelectorAll(".music-item").forEach((li) => {
-            li.classList.remove("is-fav");
-            const btn = li.querySelector(".fav-btn");
-            if (btn) btn.innerHTML = "☆";
-          });
-        });
+  // Har column-header ke andar refresh button auto inject
+  document.querySelectorAll(".column-header").forEach((header) => {
+    const refreshBtn = document.createElement("button");
+    refreshBtn.className = "refresh-btn";
+    refreshBtn.innerHTML = "⟳";
+    header.appendChild(refreshBtn);
+
+    refreshBtn.addEventListener("click", () => {
+      const column = header.closest(".column");
+      const columnKey = column.id;
+
+      favs[columnKey] = [];
+      localStorage.setItem("favourites", JSON.stringify(favs));
+
+      column.querySelectorAll(".music-item").forEach((li) => {
+        li.classList.remove("is-fav");
+        const btn = li.querySelector(".fav-btn");
+        if (btn) btn.innerHTML = "☆";
       });
-    </script>
+    });
+  });
+});
+</script>
+
   </head>
 
   <body>
@@ -645,7 +660,7 @@
           <div class="menu-header">
             <button class="cancel-btn" id="cancelBtn">✖ Close</button>
           </div>
-          <a href="#60s" role="menuitem" data-id="60s">The 60s</a>
+          <a href="#60s" role="menuitem">The 60s</a>
           <a href="#70s" role="menuitem">The 70s</a>
           <a href="#80s" role="menuitem">The 80s</a>
           <a href="#ara" role="menuitem">AURA</a>
@@ -707,7 +722,6 @@
         <div class="column s60s" id="s60s">
           <div class="column-header">
             <h2>The 60S</h2>
-            <button id="refreshFavs" class="refresh-btn">⟳</button>
           </div>
 
           <ul class="music-list">
